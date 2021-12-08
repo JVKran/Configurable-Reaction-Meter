@@ -1,0 +1,9 @@
+#ifndef __BUTTON_HPP
+#define __BUTTON_HPP
+
+class button_c {
+public:
+	static void init();
+};
+
+#endif //__BUTTON_HPP

@@ -143,7 +143,8 @@ ELF := rtos_based.elf
 
 # Paths to C, C++, and assembly source files.
 C_SRCS :=
-CXX_SRCS := hello_ucosii.cpp
+CXX_SRCS += hello_ucosii.cpp
+CXX_SRCS += src/button.cpp
 ASM_SRCS :=
 
 

@@ -13,7 +13,7 @@ obj/default/hello_ucosii.o: hello_ucosii.cpp \
  ../rtos_based_bsp//HAL/inc/priv/alt_alarm.h \
  ../rtos_based_bsp//UCOSII/inc/ucos_ii.h \
  ../rtos_based_bsp//HAL/inc/os_cpu.h \
- ../rtos_based_bsp//drivers/inc/altera_avalon_pio_regs.h
+ ../rtos_based_bsp//drivers/inc/altera_avalon_pio_regs.h src/button.hpp
 
 ../rtos_based_bsp//HAL/inc/sys/alt_irq.h:
 
@@ -48,3 +48,5 @@ obj/default/hello_ucosii.o: hello_ucosii.cpp \
 ../rtos_based_bsp//HAL/inc/os_cpu.h:
 
 ../rtos_based_bsp//drivers/inc/altera_avalon_pio_regs.h:
+
+src/button.hpp:
