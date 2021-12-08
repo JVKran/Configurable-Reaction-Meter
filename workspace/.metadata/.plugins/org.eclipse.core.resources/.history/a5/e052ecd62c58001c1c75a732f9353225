@@ -12,6 +12,8 @@
 #include "includes.h"
 #include "src/button.hpp"
 
+buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
+
 // Application logic definitions.
 #define	  MAX_RAND_DELAY	   2000
 #define   MIN_RAND_DELAY	   1000
@@ -30,8 +32,6 @@ OS_STK    task1_stk[TASK_STACKSIZE];
 
 // Synchronisation mechanisms.
 OS_EVENT *running_sem, *start_sem, *stop_sem;
-
-buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
 
 void show_score(unsigned int score){
 	int data = score % 10;
@@ -102,7 +102,7 @@ void reaction_meter(void* pdata){
 			while(buttons.pressed(RESP_KEY)){
 				printf("Cheat prevention kicking in...\n");
 				OSSemSet(stop_sem, 0, &ret);		// Reset semaphore.
-				OSTimeDly(delay);
+				OSTimeDlyHMSM(0, 0, 0, delay);
 			}
 			state = COUNT;
 			break;

@@ -1,37 +1,40 @@
 #include <stdio.h>
-#include <stdlib.h>
-
 #include <string.h>
+#include <stdlib.h>
 #include <stdint.h>
-#include <stdbool.h>
 
-#include <io.h>
+#include <unistd.h>
+#include <fcntl.h>
+
 #include <sys/alt_irq.h>
-#include <altera_avalon_pio_regs.h>
+#include <stdbool.h>
+#include <io.h>
 
 #include "includes.h"
+#include <altera_avalon_pio_regs.h>
+
 #include "src/button.hpp"
 
-// Application logic definitions.
+buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
+
 #define	  MAX_RAND_DELAY	   2000
 #define   MIN_RAND_DELAY	   1000
 #define   RESP_TIMEOUT		   2000
-#define   MIN_RESP_TIME		   80
-
-// Hardware definitions.
 #define   LED_AMT			   10
+
 #define   START_KEY			   1
 #define   RESP_KEY			   2
 
-// Task configuration.
 #define   TASK_STACKSIZE       1024
 OS_STK    task1_stk[TASK_STACKSIZE];
-#define   TASK1_PRIORITY      1		// Period of 1ms (highest priority)
+OS_STK    task2_stk[TASK_STACKSIZE];
+OS_STK    task3_stk[TASK_STACKSIZE];
 
-// Synchronisation mechanisms.
+#define TASK1_PRIORITY      1		// Period of 1ms (highest priority)
+#define TASK2_PRIORITY      2		// Period of 1 second
+#define TASK3_PRIORITY      3		// Worst case period of +infinity (lowest priority)
+
 OS_EVENT *running_sem, *start_sem, *stop_sem;
-
-buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
 
 void show_score(unsigned int score){
 	int data = score % 10;
@@ -59,11 +62,12 @@ int rotate_left(int num, int shift){
     return (num << shift) | (num >> (9 - shift));
 }
 
+// Task 1
 void reaction_meter(void* pdata){
 	INT8U ret = OS_NO_ERR;
 	uint16_t highscore = UINT16_MAX;
-	uint16_t response_time, leds = 0;
 	uint8_t tries = 0;
+	uint16_t response_time, leds = 0;
 
 	enum states {IDLE, START, DELAY, COUNT, STOP};
 	enum states state = IDLE;
@@ -96,13 +100,13 @@ void reaction_meter(void* pdata){
 		case DELAY: {
 			int32_t sys_time = OSTimeGet();
 			srand(sys_time);
-			int16_t delay = (rand() % MAX_RAND_DELAY) + MIN_RAND_DELAY;
+			int delay = (rand() % MAX_RAND_DELAY) + MIN_RAND_DELAY;
 			printf("Starting random delay of %ims.\n", delay);
 			OSTimeDly(delay);
 			while(buttons.pressed(RESP_KEY)){
 				printf("Cheat prevention kicking in...\n");
 				OSSemSet(stop_sem, 0, &ret);		// Reset semaphore.
-				OSTimeDly(delay);
+				OSTimeDlyHMSM(0, 0, 0, delay);
 			}
 			state = COUNT;
 			break;
@@ -117,7 +121,7 @@ void reaction_meter(void* pdata){
 				}
 				OSSemPend(stop_sem, 1, &ret); 	// Wait 1ms at max.
 				if(ret != OS_TIMEOUT){
-					if(time < MIN_RESP_TIME){
+					if(time < 80){
 						printf("Impossible response-time of %ims detected; invalid!\n", time);
 					} else {
 						printf("Responded within %ims!\n", time);
@@ -153,6 +157,7 @@ void reaction_meter(void* pdata){
 }
 
 int main(void){
+
 	running_sem = OSSemCreate(0);
 	start_sem = OSSemCreate(0);
 	stop_sem = OSSemCreate(0);

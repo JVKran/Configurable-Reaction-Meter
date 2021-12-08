@@ -12,11 +12,12 @@
 #include "includes.h"
 #include "src/button.hpp"
 
+buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
+
 // Application logic definitions.
 #define	  MAX_RAND_DELAY	   2000
 #define   MIN_RAND_DELAY	   1000
 #define   RESP_TIMEOUT		   2000
-#define   MIN_RESP_TIME		   80
 
 // Hardware definitions.
 #define   LED_AMT			   10
@@ -30,8 +31,6 @@ OS_STK    task1_stk[TASK_STACKSIZE];
 
 // Synchronisation mechanisms.
 OS_EVENT *running_sem, *start_sem, *stop_sem;
-
-buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
 
 void show_score(unsigned int score){
 	int data = score % 10;
@@ -96,13 +95,13 @@ void reaction_meter(void* pdata){
 		case DELAY: {
 			int32_t sys_time = OSTimeGet();
 			srand(sys_time);
-			int16_t delay = (rand() % MAX_RAND_DELAY) + MIN_RAND_DELAY;
+			int delay = (rand() % MAX_RAND_DELAY) + MIN_RAND_DELAY;
 			printf("Starting random delay of %ims.\n", delay);
 			OSTimeDly(delay);
 			while(buttons.pressed(RESP_KEY)){
 				printf("Cheat prevention kicking in...\n");
 				OSSemSet(stop_sem, 0, &ret);		// Reset semaphore.
-				OSTimeDly(delay);
+				OSTimeDlyHMSM(0, 0, 0, delay);
 			}
 			state = COUNT;
 			break;
@@ -117,7 +116,7 @@ void reaction_meter(void* pdata){
 				}
 				OSSemPend(stop_sem, 1, &ret); 	// Wait 1ms at max.
 				if(ret != OS_TIMEOUT){
-					if(time < MIN_RESP_TIME){
+					if(time < 80){
 						printf("Impossible response-time of %ims detected; invalid!\n", time);
 					} else {
 						printf("Responded within %ims!\n", time);

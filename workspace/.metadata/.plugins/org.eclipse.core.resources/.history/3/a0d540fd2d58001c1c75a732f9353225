@@ -30,7 +30,6 @@ OS_STK    task1_stk[TASK_STACKSIZE];
 
 // Synchronisation mechanisms.
 OS_EVENT *running_sem, *start_sem, *stop_sem;
-
 buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
 
 void show_score(unsigned int score){
