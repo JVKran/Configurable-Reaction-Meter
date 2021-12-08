@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;qsys_based/hello_ucosii.c&apos; to &apos;qsys_main.cpp&apos;" description="Rename resource &apos;hello_ucosii.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="hello_ucosii.c" name="qsys_main.cpp" stamp="1638976526860" updateReferences="true"/>
+</session>

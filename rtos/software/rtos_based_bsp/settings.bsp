@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>ucosii</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 8, 2021 12:00:52 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1638961252629</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 8, 2021 4:26:46 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1638977206904</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\kraan\Desktop\HBO-ICT\Jaar-4\Minor\P2\CSC\reaction_meter\rtos\software\rtos_based_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\embedded_system.sopcinfo</SopcDesignFile>
@@ -1763,7 +1763,7 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>reg32_avalon_interface_0</slaveDescriptor>
+                <slaveDescriptor>seven_segment_controller_0</slaveDescriptor>
                 <addressRange>0x00041040 - 0x00041047</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>

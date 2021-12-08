@@ -39,45 +39,45 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  10 .debug_abbrev 0000af0e  00000000  00000000  00049fac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   0000deb5  00000000  00000000  00054eba  2**0
+ 11 .debug_line   0000deb2  00000000  00000000  00054eba  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_frame  000032b0  00000000  00000000  00062d70  2**2
+ 12 .debug_frame  000032b0  00000000  00000000  00062d6c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    0000488a  00000000  00000000  00066020  2**0
+ 13 .debug_str    00004887  00000000  00000000  0006601c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    000179dc  00000000  00000000  0006a8aa  2**0
+ 14 .debug_loc    000179dc  00000000  00000000  0006a8a3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_alt_sim_info 00000010  00000000  00000000  00082288  2**2
+ 15 .debug_alt_sim_info 00000010  00000000  00000000  00082280  2**2
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 00001900  00000000  00000000  00082298  2**3
+ 16 .debug_ranges 00001900  00000000  00000000  00082290  2**3
                   CONTENTS, READONLY, DEBUGGING
- 17 .thread_model 00000006  00000000  00000000  000886ce  2**0
+ 17 .thread_model 00000006  00000000  00000000  000886c2  2**0
                   CONTENTS, READONLY
- 18 .cpu          00000005  00000000  00000000  000886d4  2**0
+ 18 .cpu          00000005  00000000  00000000  000886c8  2**0
                   CONTENTS, READONLY
- 19 .qsys         00000001  00000000  00000000  000886d9  2**0
+ 19 .qsys         00000001  00000000  00000000  000886cd  2**0
                   CONTENTS, READONLY
- 20 .simulation_enabled 00000001  00000000  00000000  000886da  2**0
+ 20 .simulation_enabled 00000001  00000000  00000000  000886ce  2**0
                   CONTENTS, READONLY
- 21 .sysid_hash   00000004  00000000  00000000  000886db  2**0
+ 21 .sysid_hash   00000004  00000000  00000000  000886cf  2**0
                   CONTENTS, READONLY
- 22 .sysid_base   00000004  00000000  00000000  000886df  2**0
+ 22 .sysid_base   00000004  00000000  00000000  000886d3  2**0
                   CONTENTS, READONLY
- 23 .sysid_time   00000004  00000000  00000000  000886e3  2**0
+ 23 .sysid_time   00000004  00000000  00000000  000886d7  2**0
                   CONTENTS, READONLY
- 24 .stderr_dev   00000009  00000000  00000000  000886e7  2**0
+ 24 .stderr_dev   00000009  00000000  00000000  000886db  2**0
                   CONTENTS, READONLY
- 25 .stdin_dev    00000009  00000000  00000000  000886f0  2**0
+ 25 .stdin_dev    00000009  00000000  00000000  000886e4  2**0
                   CONTENTS, READONLY
- 26 .stdout_dev   00000009  00000000  00000000  000886f9  2**0
+ 26 .stdout_dev   00000009  00000000  00000000  000886ed  2**0
                   CONTENTS, READONLY
- 27 .sopc_system_name 0000000f  00000000  00000000  00088702  2**0
+ 27 .sopc_system_name 0000000f  00000000  00000000  000886f6  2**0
                   CONTENTS, READONLY
- 28 .quartus_project_dir 00000046  00000000  00000000  00088711  2**0
+ 28 .quartus_project_dir 00000046  00000000  00000000  00088705  2**0
                   CONTENTS, READONLY
- 29 .jdi          00004d9e  00000000  00000000  00088757  2**0
+ 29 .jdi          00004d9e  00000000  00000000  0008874b  2**0
                   CONTENTS, READONLY
- 30 .sopcinfo     00044877  00000000  00000000  0008d4f5  2**0
+ 30 .sopcinfo     000448a4  00000000  00000000  0008d4e9  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 00000000 l    d  .entry	00000000 .entry
@@ -102,9 +102,9 @@ SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 alt_exception_entry.o
 00000094 l       .exceptions	00000000 alt_exception_unknown
 00000000 l    df *ABS*	00000000 alt_irq_handler.c
-00000000 l    df *ABS*	00000000 hello_ucosii.cpp
+00000000 l    df *ABS*	00000000 rtos_main.cpp
 00000820 l     F .text	00000064 _Z41__static_initialization_and_destruction_0ii
-00000884 l     F .text	00000030 _GLOBAL__sub_I_buttons
+00000884 l     F .text	00000030 _GLOBAL__sub_I_task1_stk
 00000000 l    df *ABS*	00000000 button.cpp
 00000000 l    df *ABS*	00000000 lib2-divmod.c
 00000000 l    df *ABS*	00000000 printf.c
@@ -285,7 +285,7 @@ SYMBOL TABLE:
 0000ecbc g     F .text	00000610 OSEventPendMulti
 00020350 g       *ABS*	00000000 __alt_heap_start
 00017c28 g     F .text	00000024 OSTaskCreateHook
-0001c004 g     O .bss	00001000 task1_stk
+0001bff0 g     O .bss	00001000 task1_stk
 00000c3c g     F .text	0000003c printf
 0001a37e g     O .rwdata	00000002 OSMboxEn
 000003b0 g     F .text	00000048 _Z11rotate_leftii
@@ -534,7 +534,7 @@ SYMBOL TABLE:
 0001bf84 g     O .bss	00000004 alt_envp
 0001bf64 g     O .bss	00000004 __malloc_max_total_mem
 00016384 g     F .text	00000060 altera_avalon_jtag_uart_write_fd
-0001bff0 g     O .bss	00000014 buttons
+0001cff0 g     O .bss	00000014 buttons
 0000a388 g     F .text	00000018 __swbuf
 00000d4c g     F .text	00000018 srand
 00018730 g     O .rodata	00000100 OSUnMapTbl
@@ -1075,10 +1075,10 @@ alt_after_alt_main:
      1f8:	003fff06 	br	1f8 <__alt_data_end+0xfffd01f8>
 
 000001fc <_Z10show_scorej>:
-#define   TASK1_PRIORITY      1		// Period of 1ms (highest priority)
-
 // Synchronisation mechanisms.
 OS_EVENT *running_sem, *start_sem, *stop_sem;
+
+buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
 
 void show_score(unsigned int score){
      1fc:	defffc04 	addi	sp,sp,-16
@@ -1128,7 +1128,7 @@ void show_score(unsigned int score){
      29c:	e0bffe17 	ldw	r2,-8(fp)
      2a0:	1884b03a 	or	r2,r3,r2
      2a4:	e0bffe15 	stw	r2,-8(fp)
-	IOWR_32DIRECT(REG32_AVALON_INTERFACE_0_BASE, 4, data);
+	IOWR_32DIRECT(SEVEN_SEGMENT_CONTROLLER_0_BASE, 4, data);
      2a8:	00800134 	movhi	r2,4
      2ac:	10841104 	addi	r2,r2,4164
      2b0:	e0fffe17 	ldw	r3,-8(fp)
@@ -1167,7 +1167,7 @@ void show_tries(unsigned int tries){
      318:	e0bffe17 	ldw	r2,-8(fp)
      31c:	1884b03a 	or	r2,r3,r2
      320:	e0bffe15 	stw	r2,-8(fp)
-	IOWR_32DIRECT(REG32_AVALON_INTERFACE_0_BASE, 0, data);
+	IOWR_32DIRECT(SEVEN_SEGMENT_CONTROLLER_0_BASE, 0, data);
      324:	00800134 	movhi	r2,4
      328:	10841004 	addi	r2,r2,4160
      32c:	e0fffe17 	ldw	r3,-8(fp)
@@ -1285,7 +1285,7 @@ void reaction_meter(void* pdata){
      44c:	000004d0 	cmplti	zero,zero,19
      450:	0000052c 	andhi	zero,zero,20
      454:	000005d8 	cmpnei	zero,zero,23
-     458:	000006dc 	xori	zero,zero,27
+     458:	000006d0 	cmplti	zero,zero,27
 		case IDLE: {
 			if(highscore != UINT16_MAX){
      45c:	e0fff80b 	ldhu	r3,-32(fp)
@@ -1339,7 +1339,7 @@ void reaction_meter(void* pdata){
 			while(buttons.pressed(START_KEY)){
      4e4:	01400044 	movi	r5,1
      4e8:	010000b4 	movhi	r4,2
-     4ec:	212ffc04 	addi	r4,r4,-16400
+     4ec:	2133fc04 	addi	r4,r4,-12304
      4f0:	0000a180 	call	a18 <_ZN9buttons_c7pressedEh>
      4f4:	10803fcc 	andi	r2,r2,255
      4f8:	10000626 	beq	r2,zero,514 <_Z14reaction_meterPv+0x11c>
@@ -1397,7 +1397,7 @@ void reaction_meter(void* pdata){
 			while(buttons.pressed(RESP_KEY)){
      57c:	01400084 	movi	r5,2
      580:	010000b4 	movhi	r4,2
-     584:	212ffc04 	addi	r4,r4,-16400
+     584:	2133fc04 	addi	r4,r4,-12304
      588:	0000a180 	call	a18 <_ZN9buttons_c7pressedEh>
      58c:	10803fcc 	andi	r2,r2,255
      590:	10000e26 	beq	r2,zero,5cc <_Z14reaction_meterPv+0x1d4>
@@ -1440,108 +1440,108 @@ void reaction_meter(void* pdata){
 			for(uint16_t time = 0; time < RESP_TIMEOUT; time++){
      5dc:	e03ffc0d 	sth	zero,-16(fp)
      5e0:	e0bffc0b 	ldhu	r2,-16(fp)
-     5e4:	1081f428 	cmpgeui	r2,r2,2000
-     5e8:	1000391e 	bne	r2,zero,6d0 <_Z14reaction_meterPv+0x2d8>
-				show_score(time);
-     5ec:	e0bffc0b 	ldhu	r2,-16(fp)
-     5f0:	1009883a 	mov	r4,r2
-     5f4:	00001fc0 	call	1fc <_Z10show_scorej>
+     5e4:	1080fa28 	cmpgeui	r2,r2,1000
+     5e8:	1000361e 	bne	r2,zero,6c4 <_Z14reaction_meterPv+0x2cc>
 				if(time % (RESP_TIMEOUT / LED_AMT) == 0){
-     5f8:	e0bffc0b 	ldhu	r2,-16(fp)
-     5fc:	01403204 	movi	r5,200
-     600:	1009883a 	mov	r4,r2
-     604:	0000bb40 	call	bb4 <__umodsi3>
-     608:	10bfffcc 	andi	r2,r2,65535
-     60c:	10000f1e 	bne	r2,zero,64c <_Z14reaction_meterPv+0x254>
+     5ec:	e0bffc0b 	ldhu	r2,-16(fp)
+     5f0:	01401904 	movi	r5,100
+     5f4:	1009883a 	mov	r4,r2
+     5f8:	0000bb40 	call	bb4 <__umodsi3>
+     5fc:	10bfffcc 	andi	r2,r2,65535
+     600:	10000f1e 	bne	r2,zero,640 <_Z14reaction_meterPv+0x248>
 					leds |= 1UL << time / (RESP_TIMEOUT / LED_AMT);
-     610:	e0bffc0b 	ldhu	r2,-16(fp)
-     614:	01403204 	movi	r5,200
-     618:	1009883a 	mov	r4,r2
-     61c:	0000b500 	call	b50 <__udivsi3>
-     620:	10bfffcc 	andi	r2,r2,65535
-     624:	00c00044 	movi	r3,1
-     628:	1884983a 	sll	r2,r3,r2
-     62c:	1007883a 	mov	r3,r2
-     630:	e0bff90b 	ldhu	r2,-28(fp)
-     634:	1884b03a 	or	r2,r3,r2
-     638:	e0bff90d 	sth	r2,-28(fp)
+     604:	e0bffc0b 	ldhu	r2,-16(fp)
+     608:	01401904 	movi	r5,100
+     60c:	1009883a 	mov	r4,r2
+     610:	0000b500 	call	b50 <__udivsi3>
+     614:	10bfffcc 	andi	r2,r2,65535
+     618:	00c00044 	movi	r3,1
+     61c:	1884983a 	sll	r2,r3,r2
+     620:	1007883a 	mov	r3,r2
+     624:	e0bff90b 	ldhu	r2,-28(fp)
+     628:	1884b03a 	or	r2,r3,r2
+     62c:	e0bff90d 	sth	r2,-28(fp)
 					IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
-     63c:	e0fff90b 	ldhu	r3,-28(fp)
-     640:	00800134 	movhi	r2,4
-     644:	10840804 	addi	r2,r2,4128
-     648:	10c00035 	stwio	r3,0(r2)
+     630:	e0fff90b 	ldhu	r3,-28(fp)
+     634:	00800134 	movhi	r2,4
+     638:	10840804 	addi	r2,r2,4128
+     63c:	10c00035 	stwio	r3,0(r2)
 				}
 				OSSemPend(stop_sem, 1, &ret); 	// Wait 1ms at max.
-     64c:	d0a70e17 	ldw	r2,-25544(gp)
-     650:	e0fffe84 	addi	r3,fp,-6
-     654:	180d883a 	mov	r6,r3
-     658:	01400044 	movi	r5,1
-     65c:	1009883a 	mov	r4,r2
-     660:	0013f400 	call	13f40 <OSSemPend>
+     640:	d0a70e17 	ldw	r2,-25544(gp)
+     644:	e0fffe84 	addi	r3,fp,-6
+     648:	180d883a 	mov	r6,r3
+     64c:	01400044 	movi	r5,1
+     650:	1009883a 	mov	r4,r2
+     654:	0013f400 	call	13f40 <OSSemPend>
 				if(ret != OS_TIMEOUT){
-     664:	e0bffe83 	ldbu	r2,-6(fp)
-     668:	10803fcc 	andi	r2,r2,255
-     66c:	108002a0 	cmpeqi	r2,r2,10
-     670:	1000131e 	bne	r2,zero,6c0 <_Z14reaction_meterPv+0x2c8>
+     658:	e0bffe83 	ldbu	r2,-6(fp)
+     65c:	10803fcc 	andi	r2,r2,255
+     660:	108002a0 	cmpeqi	r2,r2,10
+     664:	1000131e 	bne	r2,zero,6b4 <_Z14reaction_meterPv+0x2bc>
 					if(time < MIN_RESP_TIME){
-     674:	e0bffc0b 	ldhu	r2,-16(fp)
-     678:	10801428 	cmpgeui	r2,r2,80
-     67c:	1000061e 	bne	r2,zero,698 <_Z14reaction_meterPv+0x2a0>
+     668:	e0bffc0b 	ldhu	r2,-16(fp)
+     66c:	10801428 	cmpgeui	r2,r2,80
+     670:	1000061e 	bne	r2,zero,68c <_Z14reaction_meterPv+0x294>
 						printf("Impossible response-time of %ims detected; invalid!\n", time);
-     680:	e0bffc0b 	ldhu	r2,-16(fp)
-     684:	100b883a 	mov	r5,r2
-     688:	010000b4 	movhi	r4,2
-     68c:	2120fe04 	addi	r4,r4,-31752
-     690:	0000c3c0 	call	c3c <printf>
+     674:	e0bffc0b 	ldhu	r2,-16(fp)
+     678:	100b883a 	mov	r5,r2
+     67c:	010000b4 	movhi	r4,2
+     680:	2120fe04 	addi	r4,r4,-31752
+     684:	0000c3c0 	call	c3c <printf>
 					} else {
 						printf("Responded within %ims!\n", time);
 						response_time = time;
 						next_state = STOP;
 					}
 					break;
-     694:	00000e06 	br	6d0 <_Z14reaction_meterPv+0x2d8>
+     688:	00000e06 	br	6c4 <_Z14reaction_meterPv+0x2cc>
 				OSSemPend(stop_sem, 1, &ret); 	// Wait 1ms at max.
 				if(ret != OS_TIMEOUT){
 					if(time < MIN_RESP_TIME){
 						printf("Impossible response-time of %ims detected; invalid!\n", time);
 					} else {
 						printf("Responded within %ims!\n", time);
-     698:	e0bffc0b 	ldhu	r2,-16(fp)
-     69c:	100b883a 	mov	r5,r2
-     6a0:	010000b4 	movhi	r4,2
-     6a4:	21210c04 	addi	r4,r4,-31696
-     6a8:	0000c3c0 	call	c3c <printf>
+     68c:	e0bffc0b 	ldhu	r2,-16(fp)
+     690:	100b883a 	mov	r5,r2
+     694:	010000b4 	movhi	r4,2
+     698:	21210c04 	addi	r4,r4,-31696
+     69c:	0000c3c0 	call	c3c <printf>
 						response_time = time;
-     6ac:	e0bffc0b 	ldhu	r2,-16(fp)
-     6b0:	e0bff88d 	sth	r2,-30(fp)
+     6a0:	e0bffc0b 	ldhu	r2,-16(fp)
+     6a4:	e0bff88d 	sth	r2,-30(fp)
 						next_state = STOP;
-     6b4:	00800104 	movi	r2,4
-     6b8:	e0bffb15 	stw	r2,-20(fp)
+     6a8:	00800104 	movi	r2,4
+     6ac:	e0bffb15 	stw	r2,-20(fp)
 					}
 					break;
-     6bc:	00000406 	br	6d0 <_Z14reaction_meterPv+0x2d8>
+     6b0:	00000406 	br	6c4 <_Z14reaction_meterPv+0x2cc>
 			state = COUNT;
 			break;
 		}
 		case COUNT: {
 			enum states next_state = IDLE;
 			for(uint16_t time = 0; time < RESP_TIMEOUT; time++){
-     6c0:	e0bffc0b 	ldhu	r2,-16(fp)
-     6c4:	10800044 	addi	r2,r2,1
-     6c8:	e0bffc0d 	sth	r2,-16(fp)
-     6cc:	003fc406 	br	5e0 <__alt_data_end+0xfffd05e0>
+     6b4:	e0bffc0b 	ldhu	r2,-16(fp)
+     6b8:	10800044 	addi	r2,r2,1
+     6bc:	e0bffc0d 	sth	r2,-16(fp)
+     6c0:	003fc706 	br	5e0 <__alt_data_end+0xfffd05e0>
 						next_state = STOP;
 					}
 					break;
 				}
 			}
 			state = next_state;
-     6d0:	e0bffb17 	ldw	r2,-20(fp)
-     6d4:	e0bffa15 	stw	r2,-24(fp)
+     6c4:	e0bffb17 	ldw	r2,-20(fp)
+     6c8:	e0bffa15 	stw	r2,-24(fp)
 			break;
-     6d8:	00002706 	br	778 <_Z14reaction_meterPv+0x380>
+     6cc:	00002a06 	br	778 <_Z14reaction_meterPv+0x380>
 		}
 		case STOP: {
+			show_score(response_time);
+     6d0:	e0bff88b 	ldhu	r2,-30(fp)
+     6d4:	1009883a 	mov	r4,r2
+     6d8:	00001fc0 	call	1fc <_Z10show_scorej>
 			bool new_highscore = false;
      6dc:	e03ffc85 	stb	zero,-14(fp)
 			if(response_time < highscore){
@@ -1562,7 +1562,7 @@ void reaction_meter(void* pdata){
 			while(buttons.pressed(RESP_KEY)){
      708:	01400084 	movi	r5,2
      70c:	010000b4 	movhi	r4,2
-     710:	212ffc04 	addi	r4,r4,-16400
+     710:	2133fc04 	addi	r4,r4,-12304
      714:	0000a180 	call	a18 <_ZN9buttons_c7pressedEh>
      718:	10803fcc 	andi	r2,r2,255
      71c:	10001126 	beq	r2,zero,764 <_Z14reaction_meterPv+0x36c>
@@ -1642,7 +1642,7 @@ int main(void){
      7b0:	01400034 	movhi	r5,0
      7b4:	2940d304 	addi	r5,r5,844
      7b8:	010000b4 	movhi	r4,2
-     7bc:	212ffc04 	addi	r4,r4,-16400
+     7bc:	2133fc04 	addi	r4,r4,-12304
      7c0:	00009840 	call	984 <_ZN9buttons_c4initEPFvhE>
                   TASK1_PRIORITY,
                   TASK1_PRIORITY,
@@ -1655,13 +1655,13 @@ int main(void){
      7cc:	00810004 	movi	r2,1024
      7d0:	d8800215 	stw	r2,8(sp)
      7d4:	008000b4 	movhi	r2,2
-     7d8:	10b00104 	addi	r2,r2,-16380
+     7d8:	10affc04 	addi	r2,r2,-16400
      7dc:	d8800115 	stw	r2,4(sp)
      7e0:	00800044 	movi	r2,1
      7e4:	d8800015 	stw	r2,0(sp)
      7e8:	01c00044 	movi	r7,1
      7ec:	018000b4 	movhi	r6,2
-     7f0:	31b40004 	addi	r6,r6,-12288
+     7f0:	31b3fb04 	addi	r6,r6,-12308
      7f4:	000b883a 	mov	r5,zero
      7f8:	01000034 	movhi	r4,0
      7fc:	2100fe04 	addi	r4,r4,1016
@@ -1691,10 +1691,10 @@ int main(void){
      844:	e0ffff17 	ldw	r3,-4(fp)
      848:	00bfffd4 	movui	r2,65535
      84c:	1880071e 	bne	r3,r2,86c <_Z41__static_initialization_and_destruction_0ii+0x4c>
-#include <altera_avalon_pio_regs.h>
+#define   TASK1_PRIORITY      1		// Period of 1ms (highest priority)
 
-#include "includes.h"
-#include "src/button.hpp"
+// Synchronisation mechanisms.
+OS_EVENT *running_sem, *start_sem, *stop_sem;
 
 buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ);
      850:	01c00084 	movi	r7,2
@@ -1702,7 +1702,7 @@ buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ
      858:	01400134 	movhi	r5,4
      85c:	29440c04 	addi	r5,r5,4144
      860:	010000b4 	movhi	r4,2
-     864:	212ffc04 	addi	r4,r4,-16400
+     864:	2133fc04 	addi	r4,r4,-12304
      868:	00008b40 	call	8b4 <_ZN9buttons_cC1Emmm>
                   NULL,
                   0);
@@ -1717,7 +1717,7 @@ buttons_c buttons(BUTTONS_BASE, BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ
      87c:	dec00204 	addi	sp,sp,8
      880:	f800283a 	ret
 
-00000884 <_GLOBAL__sub_I_buttons>:
+00000884 <_GLOBAL__sub_I_task1_stk>:
      884:	defffe04 	addi	sp,sp,-8
      888:	dfc00115 	stw	ra,4(sp)
      88c:	df000015 	stw	fp,0(sp)
@@ -10157,7 +10157,7 @@ bool buttons_c::pressed(const uint8_t pin){
     8924:	000091b4 	movhi	zero,582
     8928:	00008cc8 	cmpgei	zero,zero,563
     892c:	00008d00 	call	8d0 <_ZN9buttons_cC1Emmm+0x1c>
-    8930:	00008a00 	call	8a0 <_GLOBAL__sub_I_buttons+0x1c>
+    8930:	00008a00 	call	8a0 <_GLOBAL__sub_I_task1_stk+0x1c>
     8934:	00008ca8 	cmpgeui	zero,zero,562
     8938:	000091b4 	movhi	zero,582
     893c:	00009074 	movhi	zero,577

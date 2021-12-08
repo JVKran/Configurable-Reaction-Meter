@@ -33,6 +33,14 @@
          type = "int";
       }
    }
+   element embedded_system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element jtag_uart
    {
       datum _sortIndex
@@ -97,7 +105,15 @@
          type = "String";
       }
    }
-   element reg32_avalon_interface_0
+   element reg32_avalon_interface_0.avalon_slave_0
+   {
+      datum baseAddress
+      {
+         value = "266304";
+         type = "String";
+      }
+   }
+   element seven_segment_controller_0
    {
       datum _sortIndex
       {
@@ -105,7 +121,7 @@
          type = "int";
       }
    }
-   element reg32_avalon_interface_0.avalon_slave_0
+   element seven_segment_controller_0.avalon_slave_0
    {
       datum baseAddress
       {
@@ -180,7 +196,7 @@
  <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
  <interface
    name="to_hex"
-   internal="reg32_avalon_interface_0.conduit_end"
+   internal="seven_segment_controller_0.conduit_end"
    type="conduit"
    dir="end" />
  <module name="buttons" kind="altera_avalon_pio" version="18.1" enabled="1">
@@ -278,7 +294,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="19" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='memory.s1' start='0x0' end='0x30000' /><slave name='nios2.jtag_debug_module' start='0x40800' end='0x41000' /><slave name='timer.s1' start='0x41000' end='0x41020' /><slave name='leds.s1' start='0x41020' end='0x41030' /><slave name='buttons.s1' start='0x41030' end='0x41040' /><slave name='reg32_avalon_interface_0.avalon_slave_0' start='0x41040' end='0x41048' /><slave name='sysid.control_slave' start='0x41048' end='0x41050' /><slave name='jtag_uart.avalon_jtag_slave' start='0x41050' end='0x41058' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='memory.s1' start='0x0' end='0x30000' /><slave name='nios2.jtag_debug_module' start='0x40800' end='0x41000' /><slave name='timer.s1' start='0x41000' end='0x41020' /><slave name='leds.s1' start='0x41020' end='0x41030' /><slave name='buttons.s1' start='0x41030' end='0x41040' /><slave name='seven_segment_controller_0.avalon_slave_0' start='0x41040' end='0x41048' /><slave name='sysid.control_slave' start='0x41048' end='0x41050' /><slave name='jtag_uart.avalon_jtag_slave' start='0x41050' end='0x41058' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -396,8 +412,8 @@
   <parameter name="userDefinedSettings" value="" />
  </module>
  <module
-   name="reg32_avalon_interface_0"
-   kind="reg32_avalon_interface"
+   name="seven_segment_controller_0"
+   kind="seven_segment_controller"
    version="1.0"
    enabled="1" />
  <module
@@ -432,7 +448,7 @@
    kind="avalon"
    version="18.1"
    start="nios2.data_master"
-   end="reg32_avalon_interface_0.avalon_slave_0">
+   end="seven_segment_controller_0.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00041040" />
   <parameter name="defaultConnection" value="false" />
@@ -512,7 +528,7 @@
    kind="clock"
    version="18.1"
    start="clk.clk"
-   end="reg32_avalon_interface_0.clock_sink" />
+   end="seven_segment_controller_0.clock_sink" />
  <connection kind="interrupt" version="18.1" start="nios2.d_irq" end="timer.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
@@ -530,7 +546,7 @@
    kind="reset"
    version="18.1"
    start="clk.clk_reset"
-   end="reg32_avalon_interface_0.clock_reset" />
+   end="seven_segment_controller_0.clock_reset" />
  <connection
    kind="reset"
    version="18.1"

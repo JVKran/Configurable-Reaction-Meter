@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2' in SOPC Builder design 'embedded_system'
  * SOPC Builder design path: ../../embedded_system.sopcinfo
  *
- * Generated: Wed Dec 08 12:00:53 CET 2021
+ * Generated: Wed Dec 08 16:26:47 CET 2021
  */
 
 /*
@@ -129,7 +129,7 @@
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
-#define __REG32_AVALON_INTERFACE
+#define __SEVEN_SEGMENT_CONTROLLER
 
 
 /*
@@ -280,17 +280,17 @@
 
 
 /*
- * reg32_avalon_interface_0 configuration
+ * seven_segment_controller_0 configuration
  *
  */
 
-#define ALT_MODULE_CLASS_reg32_avalon_interface_0 reg32_avalon_interface
-#define REG32_AVALON_INTERFACE_0_BASE 0x41040
-#define REG32_AVALON_INTERFACE_0_IRQ -1
-#define REG32_AVALON_INTERFACE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define REG32_AVALON_INTERFACE_0_NAME "/dev/reg32_avalon_interface_0"
-#define REG32_AVALON_INTERFACE_0_SPAN 8
-#define REG32_AVALON_INTERFACE_0_TYPE "reg32_avalon_interface"
+#define ALT_MODULE_CLASS_seven_segment_controller_0 seven_segment_controller
+#define SEVEN_SEGMENT_CONTROLLER_0_BASE 0x41040
+#define SEVEN_SEGMENT_CONTROLLER_0_IRQ -1
+#define SEVEN_SEGMENT_CONTROLLER_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SEVEN_SEGMENT_CONTROLLER_0_NAME "/dev/seven_segment_controller_0"
+#define SEVEN_SEGMENT_CONTROLLER_0_SPAN 8
+#define SEVEN_SEGMENT_CONTROLLER_0_TYPE "seven_segment_controller"
 
 
 /*
@@ -305,7 +305,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1638961016
+#define SYSID_TIMESTAMP 1638976959
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 
