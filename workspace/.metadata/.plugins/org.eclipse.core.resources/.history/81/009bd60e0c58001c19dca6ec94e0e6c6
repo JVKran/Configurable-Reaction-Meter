@@ -1,0 +1,11 @@
+#ifndef __TIMER_HPP
+#define __TIMER_HPP
+
+#include "includes.h"
+
+class timer_c {
+public:
+	void configure(const int microseconds);
+};
+
+#endif //__TIMER_HPP

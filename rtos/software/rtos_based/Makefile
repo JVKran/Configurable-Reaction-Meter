@@ -142,8 +142,8 @@ ACDS_VERSION := 18.1
 ELF := rtos_based.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := hello_ucosii.c
-CXX_SRCS :=
+C_SRCS :=
+CXX_SRCS := hello_ucosii.cpp
 ASM_SRCS :=
 
 

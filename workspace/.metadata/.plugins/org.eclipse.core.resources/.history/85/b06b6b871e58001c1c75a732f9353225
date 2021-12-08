@@ -1,0 +1,176 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+#include <unistd.h>
+#include <fcntl.h>
+
+#include <sys/alt_irq.h>
+#include <stdbool.h>
+#include <io.h>
+
+#include "includes.h"
+#include <altera_avalon_pio_regs.h>
+
+#define	  MAX_RAND_DELAY	   1000
+#define   RESP_TIMEOUT		   2000
+#define   TASK_STACKSIZE       1024
+OS_STK    task1_stk[TASK_STACKSIZE];
+OS_STK    task2_stk[TASK_STACKSIZE];
+OS_STK    task3_stk[TASK_STACKSIZE];
+
+#define TASK1_PRIORITY      1		// Period of 1ms (highest priority)
+#define TASK2_PRIORITY      2		// Period of 1 second
+#define TASK3_PRIORITY      3		// Worst case period of +infinity (lowest priority)
+
+OS_EVENT *running_sem, *start_sem, *stop_sem;
+volatile int edge_capture;
+enum states {IDLE, START, DELAY, COUNT, STOP};
+
+void show_number(unsigned int number){
+	int data = number % 10;
+	data |= (number / 10 % 10) << 4;
+	data |= (number / 100 % 10) << 8;
+	data |= (number / 1000 % 10) << 12;
+	IOWR_32DIRECT(REG32_AVALON_INTERFACE_0_BASE, 4, data);
+
+	data = (number / 10000 % 10);
+	data |= (number / 100000 % 10) << 4;
+	IOWR_32DIRECT(REG32_AVALON_INTERFACE_0_BASE, 0, data);
+}
+
+void button_isr(void* isr_context){
+	volatile int* edge_capture_ptr = (volatile int*) isr_context;
+	*edge_capture_ptr = IORD_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE);
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0x0);
+
+	if(*edge_capture_ptr == 1){
+		OSSemPost(start_sem);
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, 1);
+	} else if(*edge_capture_ptr == 2){
+		OSSemPost(stop_sem);
+	}
+}
+
+// Task 1
+void reaction_meter(void* pdata){
+	uint16_t counter = 0;
+	INT8U ret = OS_NO_ERR;
+	enum states state = IDLE;
+
+	while (1){
+		switch(state){
+		case IDLE: {
+			show_number(0);
+			OSSemPend(start_sem, 0, &ret);
+			state = START;
+			break;
+		}
+		case START: {
+			printf("Waiting for button to be released!\n");
+			while(IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE) & 1){
+				OSTimeDlyHMSM(0, 0, 0, 1);
+			}
+			state = DELAY;
+			break;
+		}
+		case DELAY: {
+			int32_t sys_time = OSTimeGet();
+			srand(sys_time);
+			uint16_t delay = (rand() % MAX_RAND_DELAY) + 500;
+			printf("Starting random delay of %ims.\n", delay);
+			OSTimeDlyHMSM(0, 0, 0, delay);
+			state = COUNT;
+			break;
+		}
+		case COUNT: {
+			enum states next_state = IDLE;
+			for(uint16_t time = 0; time < RESP_TIMEOUT; time++){
+				show_number(time);
+				OSSemPend(stop_sem, 1, &ret); 	// Wait 1ms at max.
+				if(ret != OS_TIMEOUT){
+					next_state = STOP;
+					break;
+				}
+			}
+			state = next_state;
+			break;
+		}
+		case STOP: {
+			printf("Waiting for button to be released!\n");
+			while(IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE) & 1){
+				OSTimeDlyHMSM(0, 0, 0, 1);
+			}
+			state = IDLE;
+			break;
+		}
+		}
+	}
+}
+
+char* receive(){
+	static char payload[10];
+	int i = 0;
+	char data;
+
+	do {
+		data = getchar();
+		payload[i++] = data;
+	} while(data != '\n');
+
+	return payload;
+}
+
+// Task 3
+void console(void* pdata){
+	char* command;
+	INT8U ret = OS_NO_ERR;
+
+	while(1){
+		command = receive();
+		if(strstr(command, "start") != NULL){
+			printf("Starting counters.");
+			OSSemPost(running_sem);
+		} else if (strstr(command, "stop") != NULL){
+			printf("Stopping counters.");
+			OSSemPend(running_sem, 0, &ret);
+		} else {
+			printf("Unkown command \'%s\'.", command);
+		}
+	}
+}
+
+int main(void){
+
+	running_sem = OSSemCreate(0);
+	start_sem = OSSemCreate(0);
+	stop_sem = OSSemCreate(0);
+
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0xF);
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0x0);
+	alt_ic_isr_register(BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID, BUTTONS_IRQ, button_isr, (void*)&edge_capture, 0x0);
+
+	OSTaskCreateExt(reaction_meter,
+                  NULL,
+                  (OS_STK*)&task1_stk[TASK_STACKSIZE-1],
+                  TASK1_PRIORITY,
+                  TASK1_PRIORITY,
+                  task1_stk,
+                  TASK_STACKSIZE,
+                  NULL,
+                  0);
+
+	OSTaskCreateExt(console,
+                  NULL,
+				  (OS_STK*)&task3_stk[TASK_STACKSIZE-1],
+                  TASK3_PRIORITY,
+                  TASK3_PRIORITY,
+                  task3_stk,
+                  TASK_STACKSIZE,
+                  NULL,
+                  0);
+
+	OSStart();
+	return 0;
+}

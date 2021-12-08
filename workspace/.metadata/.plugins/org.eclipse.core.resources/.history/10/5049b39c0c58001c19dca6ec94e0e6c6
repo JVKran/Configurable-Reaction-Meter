@@ -1,0 +1,18 @@
+#include "timer.hpp"
+
+timer_c::timer_c(const uint16_t timer_base, const uint16_t irq_controller, const uint16_t irq_id):
+		timer_base(timer_base),
+		irq_controller(irq_controller),
+		irq_id(irq_id)
+{}
+
+void timer_c::configure(const int microseconds){
+	int counter = microseconds * 50;			// For example 1000us equals 50000 ticks.
+	IOWR_ALTERA_AVALON_TIMER_PERIODL(timer_base, counter & ALTERA_AVALON_TIMER_PERIODL_MSK);
+	IOWR_ALTERA_AVALON_TIMER_PERIODH(timer_base, (counter >> 16) & ALTERA_AVALON_TIMER_PERIODH_MSK);
+
+	alt_ic_isr_register(TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID, TIMER_0_IRQ, interval_timer_ISR, 0, 0x0);
+
+	int mask = ALTERA_AVALON_TIMER_CONTROL_CONT_MSK | ALTERA_AVALON_TIMER_CONTROL_ITO_MSK | ALTERA_AVALON_TIMER_CONTROL_START_MSK;
+	IOWR_ALTERA_AVALON_TIMER_CONTROL(timer_base, mask);
+}
