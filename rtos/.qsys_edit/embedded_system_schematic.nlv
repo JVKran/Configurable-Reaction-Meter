@@ -1,0 +1,23 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst embedded_system.leds -pg 1 -lvl 3 -y 610
+preplace inst embedded_system -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst embedded_system.clk -pg 1 -lvl 1 -y 650
+preplace inst embedded_system.timer -pg 1 -lvl 3 -y 350
+preplace inst embedded_system.buttons -pg 1 -lvl 3 -y 130
+preplace inst embedded_system.memory -pg 1 -lvl 3 -y 450
+preplace inst embedded_system.reg32_avalon_interface_0 -pg 1 -lvl 3 -y 30
+preplace inst embedded_system.sysid -pg 1 -lvl 3 -y 530
+preplace inst embedded_system.nios2 -pg 1 -lvl 2 -y 430
+preplace inst embedded_system.jtag_uart -pg 1 -lvl 3 -y 250
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)reg32_avalon_interface_0.conduit_end,(SLAVE)embedded_system.displays) 1 0 3 NJ 100 NJ 100 NJ
+preplace netloc INTERCONNECT<net_container>embedded_system</net_container>(SLAVE)buttons.s1,(SLAVE)leds.s1,(SLAVE)nios2.jtag_debug_module,(SLAVE)memory.s1,(MASTER)nios2.data_master,(MASTER)nios2.instruction_master,(SLAVE)sysid.control_slave,(SLAVE)reg32_avalon_interface_0.avalon_slave_0,(SLAVE)timer.s1,(SLAVE)jtag_uart.avalon_jtag_slave) 1 1 2 290 420 560
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)leds.external_connection,(SLAVE)embedded_system.leds) 1 0 3 NJ 640 NJ 640 NJ
+preplace netloc FAN_OUT<net_container>embedded_system</net_container>(SLAVE)timer.irq,(SLAVE)jtag_uart.irq,(SLAVE)buttons.irq,(MASTER)nios2.d_irq) 1 2 1 600
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)embedded_system.reset,(SLAVE)clk.clk_in_reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)embedded_system.buttons,(SLAVE)buttons.external_connection) 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)clk.clk_in,(SLAVE)embedded_system.clk) 1 0 1 NJ
+preplace netloc INTERCONNECT<net_container>embedded_system</net_container>(MASTER)clk.clk_reset,(SLAVE)sysid.reset,(SLAVE)timer.reset,(MASTER)nios2.jtag_debug_module_reset,(SLAVE)memory.reset1,(SLAVE)buttons.reset,(SLAVE)nios2.reset_n,(SLAVE)reg32_avalon_interface_0.clock_reset,(SLAVE)jtag_uart.reset,(SLAVE)leds.reset) 1 1 2 290 660 580
+preplace netloc FAN_OUT<net_container>embedded_system</net_container>(SLAVE)buttons.clk,(SLAVE)leds.clk,(MASTER)clk.clk,(SLAVE)nios2.clk,(SLAVE)timer.clk,(SLAVE)sysid.clk,(SLAVE)memory.clk1,(SLAVE)jtag_uart.clk,(SLAVE)reg32_avalon_interface_0.clock_sink) 1 1 2 270 620 620
+levelinfo -pg 1 0 60 830
+levelinfo -hier embedded_system 70 100 340 670 820
