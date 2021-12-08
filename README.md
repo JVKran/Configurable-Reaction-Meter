@@ -1,3 +1,5 @@
-The RTOS can't reach an accuracy higher than 1ms as this would increase the scheduler overhead to such an extent that it wouldn't be able to do any work anymore.
+# Reaction meter
+This repository features three possible implementation of a response time meter (also known as reaction meter). It has been made for a course of the Embedded Systems minor at the Hogeschool Rotterdam in which we learn how to configure SoC's. All learned methods have to be compared and shown to prove the provided knowledge has been understood. As a result, the three implementations are RTOS, Qsys and Linux based.
 
-Using another interval timer would of course enable us to measure with an accuracy of 1us, but this would remove the neccesity of the assignment to perform measurements.
+## UC/OS-II
+An interval timer component is used to provide the ticks for the specified RTOS. This timer is able to provide ticks between 1us and several seconds, but the RTOS requires it to be configured at 1ms. Hence, we can't reach a measurement accuracy of more than 1ms. This can, of course, be solved by adding an extra interval timer that's not used by the RTOS, but this would invalidate our initiative to provide a Qsys implementation. The NIOS-II based embedded system, as well as the required code, can be found in the [RTOS-folder](./rtos).
