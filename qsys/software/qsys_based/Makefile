@@ -143,8 +143,7 @@ ELF := qsys_based.elf
 
 # Paths to C, C++, and assembly source files.
 C_SRCS :=
-CXX_SRCS += src/button.cpp
-CXX_SRCS += qsys_main.cpp
+CXX_SRCS := qsys_main.cpp
 ASM_SRCS :=
 
 

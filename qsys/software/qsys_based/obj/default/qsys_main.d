@@ -13,7 +13,7 @@ obj/default/qsys_main.o: qsys_main.cpp ../qsys_based_bsp//HAL/inc/io.h \
  ../qsys_based_bsp//HAL/inc/sys/alt_llist.h \
  ../qsys_based_bsp//HAL/inc/priv/alt_alarm.h \
  ../qsys_based_bsp//UCOSII/inc/ucos_ii.h \
- ../qsys_based_bsp//HAL/inc/os_cpu.h src/button.hpp
+ ../qsys_based_bsp//HAL/inc/os_cpu.h
 
 ../qsys_based_bsp//HAL/inc/io.h:
 
@@ -48,5 +48,3 @@ obj/default/qsys_main.o: qsys_main.cpp ../qsys_based_bsp//HAL/inc/io.h \
 ../qsys_based_bsp//UCOSII/inc/ucos_ii.h:
 
 ../qsys_based_bsp//HAL/inc/os_cpu.h:
-
-src/button.hpp:

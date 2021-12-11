@@ -6,31 +6,23 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element buttons
-   {
-      datum _sortIndex
-      {
-         value = "6";
-         type = "int";
-      }
-   }
-   element buttons.s1
-   {
-      datum baseAddress
-      {
-         value = "266288";
-         type = "String";
-      }
-   }
    element clk
    {
       datum _sortIndex
       {
          value = "0";
          type = "int";
+      }
+   }
+   element embedded_system
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
       }
    }
    element jtag
@@ -45,23 +37,7 @@
    {
       datum baseAddress
       {
-         value = "266320";
-         type = "String";
-      }
-   }
-   element leds
-   {
-      datum _sortIndex
-      {
-         value = "7";
-         type = "int";
-      }
-   }
-   element leds.s1
-   {
-      datum baseAddress
-      {
-         value = "266272";
+         value = "266288";
          type = "String";
       }
    }
@@ -97,11 +73,19 @@
          type = "String";
       }
    }
+   element response_time_meter_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
    element ssd_controller
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "6";
          type = "int";
       }
    }
@@ -109,7 +93,7 @@
    {
       datum baseAddress
       {
-         value = "266304";
+         value = "266280";
          type = "String";
       }
    }
@@ -125,7 +109,7 @@
    {
       datum baseAddress
       {
-         value = "266312";
+         value = "266272";
          type = "String";
       }
    }
@@ -159,7 +143,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName">qsys_reaction_meter.qpf</parameter>
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -168,13 +152,13 @@
  <instanceScript></instanceScript>
  <interface
    name="buttons"
-   internal="buttons.external_connection"
+   internal="response_time_meter_0.buttons_conduit"
    type="conduit"
    dir="end" />
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
  <interface
    name="leds"
-   internal="leds.external_connection"
+   internal="response_time_meter_0.leds_conduit"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
@@ -183,20 +167,6 @@
    internal="ssd_controller.conduit_end"
    type="conduit"
    dir="end" />
- <module name="buttons" kind="altera_avalon_pio" version="18.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="true" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="FALLING" />
-  <parameter name="generateIRQ" value="true" />
-  <parameter name="irqType" value="EDGE" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="4" />
- </module>
  <module name="clk" kind="clock_source" version="18.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -217,20 +187,6 @@
   <parameter name="useRelativePathForSimFile" value="false" />
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
- </module>
- <module name="leds" kind="altera_avalon_pio" version="18.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="10" />
  </module>
  <module
    name="memory"
@@ -274,7 +230,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="19" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='memory.s1' start='0x0' end='0x30000' /><slave name='nios2.jtag_debug_module' start='0x40800' end='0x41000' /><slave name='timer.s1' start='0x41000' end='0x41020' /><slave name='leds.s1' start='0x41020' end='0x41030' /><slave name='buttons.s1' start='0x41030' end='0x41040' /><slave name='ssd_controller.avalon_slave_0' start='0x41040' end='0x41048' /><slave name='sysid.control_slave' start='0x41048' end='0x41050' /><slave name='jtag.avalon_jtag_slave' start='0x41050' end='0x41058' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='memory.s1' start='0x0' end='0x30000' /><slave name='nios2.jtag_debug_module' start='0x40800' end='0x41000' /><slave name='timer.s1' start='0x41000' end='0x41020' /><slave name='sysid.control_slave' start='0x41020' end='0x41028' /><slave name='ssd_controller.avalon_slave_0' start='0x41028' end='0x41030' /><slave name='jtag.avalon_jtag_slave' start='0x41030' end='0x41038' /><slave name='response_time_meter_0.avalon_slave_0' start='0x41038' end='0x4103C' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -392,6 +348,11 @@
   <parameter name="userDefinedSettings" value="" />
  </module>
  <module
+   name="response_time_meter_0"
+   kind="response_time_meter"
+   version="1.0"
+   enabled="1" />
+ <module
    name="ssd_controller"
    kind="seven_segment_controller"
    version="1.0"
@@ -421,7 +382,7 @@
    start="nios2.data_master"
    end="jtag.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00041050" />
+  <parameter name="baseAddress" value="0x00041030" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -430,7 +391,16 @@
    start="nios2.data_master"
    end="ssd_controller.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00041040" />
+  <parameter name="baseAddress" value="0x00041028" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2.data_master"
+   end="response_time_meter_0.avalon_slave_0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00041038" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -439,7 +409,7 @@
    start="nios2.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00041048" />
+  <parameter name="baseAddress" value="0x00041020" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -468,20 +438,6 @@
  <connection
    kind="avalon"
    version="18.1"
-   start="nios2.data_master"
-   end="buttons.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00041030" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection kind="avalon" version="18.1" start="nios2.data_master" end="leds.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00041020" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="18.1"
    start="nios2.instruction_master"
    end="nios2.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
@@ -501,33 +457,43 @@
  <connection kind="clock" version="18.1" start="clk.clk" end="jtag.clk" />
  <connection kind="clock" version="18.1" start="clk.clk" end="timer.clk" />
  <connection kind="clock" version="18.1" start="clk.clk" end="sysid.clk" />
- <connection kind="clock" version="18.1" start="clk.clk" end="buttons.clk" />
- <connection kind="clock" version="18.1" start="clk.clk" end="leds.clk" />
  <connection kind="clock" version="18.1" start="clk.clk" end="memory.clk1" />
  <connection
    kind="clock"
    version="18.1"
    start="clk.clk"
    end="ssd_controller.clock_sink" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clk.clk"
+   end="response_time_meter_0.clock_sink" />
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="nios2.d_irq"
+   end="response_time_meter_0.interrupt_sender">
+  <parameter name="irqNumber" value="1" />
+ </connection>
  <connection kind="interrupt" version="18.1" start="nios2.d_irq" end="timer.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
  <connection kind="interrupt" version="18.1" start="nios2.d_irq" end="jtag.irq">
   <parameter name="irqNumber" value="2" />
  </connection>
- <connection kind="interrupt" version="18.1" start="nios2.d_irq" end="buttons.irq">
-  <parameter name="irqNumber" value="1" />
- </connection>
  <connection
    kind="reset"
    version="18.1"
    start="clk.clk_reset"
    end="ssd_controller.clock_reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk.clk_reset"
+   end="response_time_meter_0.clock_reset" />
  <connection kind="reset" version="18.1" start="clk.clk_reset" end="jtag.reset" />
  <connection kind="reset" version="18.1" start="clk.clk_reset" end="timer.reset" />
  <connection kind="reset" version="18.1" start="clk.clk_reset" end="sysid.reset" />
- <connection kind="reset" version="18.1" start="clk.clk_reset" end="buttons.reset" />
- <connection kind="reset" version="18.1" start="clk.clk_reset" end="leds.reset" />
  <connection kind="reset" version="18.1" start="clk.clk_reset" end="memory.reset1" />
  <connection kind="reset" version="18.1" start="clk.clk_reset" end="nios2.reset_n" />
  <connection

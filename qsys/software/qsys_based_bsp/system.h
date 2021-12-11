@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2' in SOPC Builder design 'embedded_system'
  * SOPC Builder design path: ../../embedded_system.sopcinfo
  *
- * Generated: Wed Dec 08 16:14:01 CET 2021
+ * Generated: Sat Dec 11 15:33:53 CET 2021
  */
 
 /*
@@ -125,10 +125,10 @@
 
 #define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
-#define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_QSYS
+#define __RESPONSE_TIME_METER
 #define __SEVEN_SEGMENT_CONTROLLER
 
 
@@ -148,51 +148,24 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag"
-#define ALT_STDERR_BASE 0x41050
+#define ALT_STDERR_BASE 0x41030
 #define ALT_STDERR_DEV jtag
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag"
-#define ALT_STDIN_BASE 0x41050
+#define ALT_STDIN_BASE 0x41030
 #define ALT_STDIN_DEV jtag
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag"
-#define ALT_STDOUT_BASE 0x41050
+#define ALT_STDOUT_BASE 0x41030
 #define ALT_STDOUT_DEV jtag
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "embedded_system"
-
-
-/*
- * buttons configuration
- *
- */
-
-#define ALT_MODULE_CLASS_buttons altera_avalon_pio
-#define BUTTONS_BASE 0x41030
-#define BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
-#define BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define BUTTONS_CAPTURE 1
-#define BUTTONS_DATA_WIDTH 4
-#define BUTTONS_DO_TEST_BENCH_WIRING 0
-#define BUTTONS_DRIVEN_SIM_VALUE 0
-#define BUTTONS_EDGE_TYPE "FALLING"
-#define BUTTONS_FREQ 50000000
-#define BUTTONS_HAS_IN 1
-#define BUTTONS_HAS_OUT 0
-#define BUTTONS_HAS_TRI 0
-#define BUTTONS_IRQ 1
-#define BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define BUTTONS_IRQ_TYPE "EDGE"
-#define BUTTONS_NAME "/dev/buttons"
-#define BUTTONS_RESET_VALUE 0
-#define BUTTONS_SPAN 16
-#define BUTTONS_TYPE "altera_avalon_pio"
 
 
 /*
@@ -211,7 +184,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag altera_avalon_jtag_uart
-#define JTAG_BASE 0x41050
+#define JTAG_BASE 0x41030
 #define JTAG_IRQ 2
 #define JTAG_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_NAME "/dev/jtag"
@@ -221,33 +194,6 @@
 #define JTAG_TYPE "altera_avalon_jtag_uart"
 #define JTAG_WRITE_DEPTH 64
 #define JTAG_WRITE_THRESHOLD 8
-
-
-/*
- * leds configuration
- *
- */
-
-#define ALT_MODULE_CLASS_leds altera_avalon_pio
-#define LEDS_BASE 0x41020
-#define LEDS_BIT_CLEARING_EDGE_REGISTER 0
-#define LEDS_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define LEDS_CAPTURE 0
-#define LEDS_DATA_WIDTH 10
-#define LEDS_DO_TEST_BENCH_WIRING 0
-#define LEDS_DRIVEN_SIM_VALUE 0
-#define LEDS_EDGE_TYPE "NONE"
-#define LEDS_FREQ 50000000
-#define LEDS_HAS_IN 0
-#define LEDS_HAS_OUT 1
-#define LEDS_HAS_TRI 0
-#define LEDS_IRQ -1
-#define LEDS_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define LEDS_IRQ_TYPE "NONE"
-#define LEDS_NAME "/dev/leds"
-#define LEDS_RESET_VALUE 0
-#define LEDS_SPAN 16
-#define LEDS_TYPE "altera_avalon_pio"
 
 
 /*
@@ -280,12 +226,26 @@
 
 
 /*
+ * response_time_meter_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_response_time_meter_0 response_time_meter
+#define RESPONSE_TIME_METER_0_BASE 0x41038
+#define RESPONSE_TIME_METER_0_IRQ -1
+#define RESPONSE_TIME_METER_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define RESPONSE_TIME_METER_0_NAME "/dev/response_time_meter_0"
+#define RESPONSE_TIME_METER_0_SPAN 4
+#define RESPONSE_TIME_METER_0_TYPE "response_time_meter"
+
+
+/*
  * ssd_controller configuration
  *
  */
 
 #define ALT_MODULE_CLASS_ssd_controller seven_segment_controller
-#define SSD_CONTROLLER_BASE 0x41040
+#define SSD_CONTROLLER_BASE 0x41028
 #define SSD_CONTROLLER_IRQ -1
 #define SSD_CONTROLLER_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SSD_CONTROLLER_NAME "/dev/ssd_controller"
@@ -299,13 +259,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid_qsys
-#define SYSID_BASE 0x41048
+#define SYSID_BASE 0x41020
 #define SYSID_ID 19088743
 #define SYSID_IRQ -1
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1638975854
+#define SYSID_TIMESTAMP 1639232919
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

@@ -1,8 +1,22 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst unsaved.clk_0 -pg 1 -lvl 1 -y 30
-preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)unsaved.reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)clk_0.clk_in,(SLAVE)unsaved.clk) 1 0 1 NJ
-levelinfo -pg 1 0 50 270
-levelinfo -hier unsaved 60 90 260
+preplace inst embedded_system.jtag -pg 1 -lvl 3 -y 170
+preplace inst embedded_system -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst embedded_system.clk -pg 1 -lvl 1 -y 290
+preplace inst embedded_system.timer -pg 1 -lvl 3 -y 270
+preplace inst embedded_system.memory -pg 1 -lvl 3 -y 370
+preplace inst embedded_system.response_time_meter_0 -pg 1 -lvl 3 -y 30
+preplace inst embedded_system.sysid -pg 1 -lvl 3 -y 450
+preplace inst embedded_system.nios2 -pg 1 -lvl 2 -y 270
+preplace inst embedded_system.ssd_controller -pg 1 -lvl 3 -y 530
+preplace netloc INTERCONNECT<net_container>embedded_system</net_container>(SLAVE)sysid.control_slave,(MASTER)nios2.data_master,(SLAVE)response_time_meter_0.avalon_slave_0,(SLAVE)ssd_controller.avalon_slave_0,(MASTER)nios2.instruction_master,(SLAVE)nios2.jtag_debug_module,(SLAVE)jtag.avalon_jtag_slave,(SLAVE)memory.s1,(SLAVE)timer.s1) 1 1 2 310 400 560
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)embedded_system.leds,(SLAVE)response_time_meter_0.leds_conduit) 1 0 3 NJ 140 NJ 140 NJ
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)clk.clk_in_reset,(SLAVE)embedded_system.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)ssd_controller.conduit_end,(SLAVE)embedded_system.to_hex) 1 0 3 NJ 600 NJ 600 NJ
+preplace netloc INTERCONNECT<net_container>embedded_system</net_container>(SLAVE)ssd_controller.clock_reset,(MASTER)nios2.jtag_debug_module_reset,(SLAVE)response_time_meter_0.clock_reset,(SLAVE)nios2.reset_n,(SLAVE)sysid.reset,(MASTER)clk.clk_reset,(SLAVE)memory.reset1,(SLAVE)jtag.reset,(SLAVE)timer.reset) 1 1 2 270 420 580
+preplace netloc FAN_OUT<net_container>embedded_system</net_container>(SLAVE)timer.irq,(SLAVE)jtag.irq,(MASTER)nios2.d_irq) 1 2 1 620
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)embedded_system.buttons,(SLAVE)response_time_meter_0.buttons_conduit) 1 0 3 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>embedded_system</net_container>(SLAVE)clk.clk_in,(SLAVE)embedded_system.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>embedded_system</net_container>(SLAVE)sysid.clk,(SLAVE)response_time_meter_0.clock_sink,(MASTER)clk.clk,(SLAVE)timer.clk,(SLAVE)jtag.clk,(SLAVE)nios2.clk,(SLAVE)memory.clk1,(SLAVE)ssd_controller.clock_sink) 1 1 2 290 440 600
+levelinfo -pg 1 0 60 820
+levelinfo -hier embedded_system 70 100 340 660 810

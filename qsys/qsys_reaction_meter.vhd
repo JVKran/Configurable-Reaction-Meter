@@ -21,10 +21,10 @@ END qsys_reaction_meter;
 ARCHITECTURE structure OF qsys_reaction_meter IS
     component embedded_system is
         port (
-            buttons_export    : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- export
+            buttons_buttons_conduit : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- export
             clk_clk           : in  std_logic                     := 'X';             -- clk
             to_hex_readdata : out std_logic_vector(47 downto 0);                    -- readdata
-            leds_export       : out std_logic_vector(9 downto 0);                     -- export
+            leds_leds_conduit : out std_logic_vector(9 downto 0);                     -- export
             reset_reset_n     : in  std_logic                     := 'X'              -- reset_n
         );
     end component embedded_system;
@@ -33,7 +33,8 @@ BEGIN
 
     u0 : embedded_system
         port map (
-            buttons_export    					=> KEY,
+            buttons_buttons_conduit(0)				=> KEY(0),
+				buttons_buttons_conduit(1)				=> KEY(1),
             clk_clk           					=> CLOCK_50,
 				to_hex_readdata(6 DOWNTO 0) 		=> HEX0,
 				to_hex_readdata(13 DOWNTO 7) 		=> HEX1,
@@ -41,7 +42,7 @@ BEGIN
 				to_hex_readdata(27 DOWNTO 21) 	=> HEX3,
 				to_hex_readdata(37 DOWNTO 31) 	=> HEX4,
 				to_hex_readdata(44 DOWNTO 38) 	=> HEX5,
-            leds_export       					=> LEDR,
+            leds_leds_conduit       			=> LEDR,
             reset_reset_n     					=> SW(0)
         );
 END structure;
