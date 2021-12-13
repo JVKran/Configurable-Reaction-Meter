@@ -47,8 +47,8 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 0 152)
 		(output)
-		(text "leds_leds_conduit[9..0]" (rect 0 0 89 12)(font "Arial" (font_size 8)))
-		(text "leds_leds_conduit[9..0]" (rect 4 141 142 152)(font "Arial" (font_size 8)))
+		(text "leds_export[9..0]" (rect 0 0 66 12)(font "Arial" (font_size 8)))
+		(text "leds_export[9..0]" (rect 4 141 106 152)(font "Arial" (font_size 8)))
 		(line (pt 0 152)(pt 160 152)(line_width 3))
 	)
 	(port
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 		(text "clk" (rect 145 83 308 179)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 165 107 348 224)(font "Arial" (color 0 0 0)))
 		(text "leds" (rect 137 123 298 259)(font "Arial" (color 128 0 0)(font_size 9)))
-		(text "leds_conduit" (rect 165 147 402 304)(font "Arial" (color 0 0 0)))
+		(text "export" (rect 165 147 366 304)(font "Arial" (color 0 0 0)))
 		(text "reset" (rect 131 163 292 339)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset_n" (rect 165 187 372 384)(font "Arial" (color 0 0 0)))
 		(text "to_hex" (rect 122 203 280 419)(font "Arial" (color 128 0 0)(font_size 9)))

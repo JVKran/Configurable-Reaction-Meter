@@ -11,7 +11,8 @@ obj/default/hello_ucosii.o: hello_ucosii.c \
  ../qsys_based_bsp//HAL/inc/sys/alt_llist.h \
  ../qsys_based_bsp//HAL/inc/priv/alt_alarm.h \
  ../qsys_based_bsp//UCOSII/inc/ucos_ii.h \
- ../qsys_based_bsp//HAL/inc/os_cpu.h
+ ../qsys_based_bsp//HAL/inc/os_cpu.h \
+ ../qsys_based_bsp//drivers/inc/altera_avalon_pio_regs.h
 
 ../qsys_based_bsp//HAL/inc/io.h:
 
@@ -44,3 +45,5 @@ obj/default/hello_ucosii.o: hello_ucosii.c \
 ../qsys_based_bsp//UCOSII/inc/ucos_ii.h:
 
 ../qsys_based_bsp//HAL/inc/os_cpu.h:
+
+../qsys_based_bsp//drivers/inc/altera_avalon_pio_regs.h:

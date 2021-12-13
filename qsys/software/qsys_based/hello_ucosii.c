@@ -9,6 +9,7 @@
 #include <sys/alt_irq.h>
 
 #include "includes.h"
+#include <altera_avalon_pio_regs.h>
 
 // Application logic definitions.
 #define	  MAX_RAND_DELAY	   2000
@@ -43,24 +44,32 @@ void show_tries(unsigned int tries){
 	IOWR_32DIRECT(SSD_CONTROLLER_BASE, 0, data);
 }
 
+int rotate_left(int num, int shift){
+    return (num << shift) | (num >> (9 - shift));
+}
+
 void reaction_meter(void* pdata){
-	uint16_t data;
+	uint16_t data, leds;
+	leds = 1;
 
 	while (1){
 		data = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 0);
 		printf("Register 0 contains \'%i\'.\n", data);
 		OSTimeDlyHMSM(0, 0, 1, 0);
+//
+//		data = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 2);
+//		printf("Register 1 contains \'%i\'.\n", data);
+//		OSTimeDlyHMSM(0, 0, 1, 0);
 
-		data = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 2);
-		printf("Register 1 contains \'%i\'.\n", data);
-		OSTimeDlyHMSM(0, 0, 1, 0);
+		leds = rotate_left(leds, 1);
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
+		OSTimeDlyHMSM(0, 0, 0, 100);
 	}
 }
 
 static void isr(void * isr_context){
-	static int counter = 0;
-	IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 0);
-	show_tries(counter++);
+	uint16_t time = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 2);
+	show_score(time);
 }
 
 int main(void){

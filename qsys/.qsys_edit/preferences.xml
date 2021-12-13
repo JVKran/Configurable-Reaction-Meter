@@ -7,7 +7,7 @@
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
- <library expandedCategories="Project/My Own IP Cores,Library,Project" />
+ <library expandedCategories="Library,Project,Project/My Own IP Cores" />
  <window width="1936" height="1053" x="-8" y="-8" />
  <generation synthesis="VHDL" block_symbol_file="0" />
  <hdlexample language="VHDL" />

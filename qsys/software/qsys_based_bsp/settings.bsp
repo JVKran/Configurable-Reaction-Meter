@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>ucosii</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 13, 2021 9:57:53 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1639385874007</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 13, 2021 11:24:26 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1639391066182</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\kraan\Desktop\HBO-ICT\Jaar-4\Minor\P2\CSC\reaction_meter\qsys\software\qsys_based_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\embedded_system.sopcinfo</SopcDesignFile>
@@ -1751,26 +1751,32 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>leds</slaveDescriptor>
+                <addressRange>0x00041020 - 0x0004102F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x00041020 - 0x00041027</addressRange>
+                <addressRange>0x00041030 - 0x00041037</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>ssd_controller</slaveDescriptor>
-                <addressRange>0x00041028 - 0x0004102F</addressRange>
+                <addressRange>0x00041038 - 0x0004103F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag</slaveDescriptor>
-                <addressRange>0x00041030 - 0x00041037</addressRange>
+                <addressRange>0x00041040 - 0x00041047</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>response_time_meter_0</slaveDescriptor>
-                <addressRange>0x00041038 - 0x0004103B</addressRange>
+                <addressRange>0x00041048 - 0x0004104B</addressRange>
                 <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
