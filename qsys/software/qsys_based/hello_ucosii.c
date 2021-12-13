@@ -22,10 +22,18 @@
 #define   START_KEY			   1
 #define   RESP_KEY			   2
 
+// States
+#define   SYS_COUNTING 3
+#define   SYS_STOP 4
+
 // Task configuration.
 #define   TASK_STACKSIZE       1024
 OS_STK    task1_stk[TASK_STACKSIZE];
 #define   TASK1_PRIORITY      1		// Period of 1ms (highest priority)
+
+// IRQ-enabled custom platform designer component
+#define	  IRQ_ID			   1
+#define	  IRQ_CONTROLLER	   0
 
 // Synchronisation mechanisms.
 OS_EVENT *running_sem, *start_sem, *stop_sem;
@@ -49,27 +57,77 @@ int rotate_left(int num, int shift){
 }
 
 void reaction_meter(void* pdata){
-	uint16_t data, leds;
-	leds = 1;
+	INT8U ret = OS_NO_ERR;
+	uint16_t highscore = UINT16_MAX;
+	uint16_t response_time, leds = 0;
+	uint8_t tries = 0;
+
+	enum states {IDLE, COUNT, STOP};
+	enum states state = IDLE;
 
 	while (1){
-		data = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 0);
-		printf("Register 0 contains \'%i\'.\n", data);
-		OSTimeDlyHMSM(0, 0, 1, 0);
-//
-//		data = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 2);
-//		printf("Register 1 contains \'%i\'.\n", data);
-//		OSTimeDlyHMSM(0, 0, 1, 0);
-
-		leds = rotate_left(leds, 1);
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
-		OSTimeDlyHMSM(0, 0, 0, 100);
+		switch(state){
+		case IDLE: {
+			if(highscore != UINT16_MAX){
+				show_score(highscore);
+			} else {
+				show_score(0);
+			}
+			show_tries(tries++);
+			leds = 0;
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
+			OSSemPend(start_sem, 0, &ret);
+			show_score(0);
+			state = COUNT;
+			break;
+		}
+		case COUNT: {
+			enum states next_state = IDLE;
+			for(uint16_t time = 0; time < 20; time++){
+				leds <<= 1;
+				leds |= 1UL;
+				IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
+				OSSemPend(stop_sem, 100, &ret); 	// Wait 1ms at max.
+				if(ret != OS_TIMEOUT){
+					response_time = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 2);
+					if(response_time >= MIN_RESP_TIME){
+						printf("Responded within %ims!\n", response_time);
+						next_state = STOP;
+					}
+					break;
+				}
+			}
+			state = next_state;
+			break;
+		}
+		case STOP: {
+			show_score(response_time);
+			bool new_highscore = false;
+			if(response_time < highscore){
+				highscore = response_time;
+				new_highscore = true;
+			}
+			for(uint8_t i = 0; i < 20; i++){
+				OSTimeDlyHMSM(0, 0, 0, 100);
+				if(new_highscore){
+					leds = rotate_left(leds, 1);
+					IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
+				}
+			}
+			state = IDLE;
+			break;
+		}
+		}
 	}
 }
 
 static void isr(void * isr_context){
-	uint16_t time = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 2);
-	show_score(time);
+	uint16_t state = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 0);
+	if(state == SYS_COUNTING){
+		OSSemPost(start_sem);
+	} else if(state == SYS_STOP) {
+		OSSemPost(stop_sem);
+	}
 }
 
 int main(void){
@@ -77,7 +135,7 @@ int main(void){
 	start_sem = OSSemCreate(0);
 	stop_sem = OSSemCreate(0);
 
-	alt_ic_isr_register(RESPONSE_TIME_METER_0_IRQ_INTERRUPT_CONTROLLER_ID, RESPONSE_TIME_METER_0_IRQ, isr, 0, 0x0);
+	alt_ic_isr_register(IRQ_CONTROLLER, IRQ_ID, isr, 0, 0x0);
 
 	OSTaskCreateExt(reaction_meter,
                   NULL,

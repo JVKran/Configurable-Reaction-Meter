@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>ucosii</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 13, 2021 11:24:26 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1639391066182</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 13, 2021 12:30:00 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1639395000978</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\kraan\Desktop\HBO-ICT\Jaar-4\Minor\P2\CSC\reaction_meter\qsys\software\qsys_based_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\embedded_system.sopcinfo</SopcDesignFile>

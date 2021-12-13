@@ -1874,3 +1874,132 @@ java.lang.Exception: System timestamp mismatch - connected: "1639390828", expect
 
 !ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 11:25:19.662
 !MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639390828 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 11:59:12.990
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2021-12-13 11:59:18.344
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: Connected system ID hash not found on target at expected base address.
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:589)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 4 0 2021-12-13 11:59:18.346
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: Connected system ID hash not found on target at expected base address.
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:589)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 11:59:36.694
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639392822]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 11:59:39.298
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639392822 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:15:08.175
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:15:09.247
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639393585]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:15:11.838
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639393585 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:16:08.200
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:16:08.997
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639393585]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:16:11.585
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639393585 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:19:25.933
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:19:26.794
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639393585]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:19:29.346
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639393585 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:21:02.447
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:21:03.199
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639393585]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:21:05.729
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639393585 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:30:42.430
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:30:43.564
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639394707]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:30:46.189
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639394707 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:32:45.434
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:32:46.215
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639394707]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:32:48.814
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639394707 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:43:26.665
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:43:27.469
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639394707]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:43:30.024
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639394707 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:44:21.075
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:44:21.894
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639394707]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:44:24.529
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639394707 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:50:17.382
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:50:18.177
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639394707]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:50:20.714
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639394707 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:51:30.706
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:51:31.484
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x41030 --id=0x1234567 --timestamp=1639394707]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2021-12-13 12:51:33.983
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x41030 --id=0x1234567 --timestamp=1639394707 /cygdrive/c/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based/qsys_based.elf]
