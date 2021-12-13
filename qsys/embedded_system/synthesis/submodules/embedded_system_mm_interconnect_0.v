@@ -45,6 +45,7 @@ module embedded_system_mm_interconnect_0 (
 		input  wire        nios2_jtag_debug_module_waitrequest,           //                                     .waitrequest
 		output wire        nios2_jtag_debug_module_debugaccess,           //                                     .debugaccess
 		output wire [0:0]  response_time_meter_0_avalon_slave_0_address,  // response_time_meter_0_avalon_slave_0.address
+		output wire        response_time_meter_0_avalon_slave_0_read,     //                                     .read
 		input  wire [15:0] response_time_meter_0_avalon_slave_0_readdata, //                                     .readdata
 		output wire [0:0]  ssd_controller_avalon_slave_0_address,         //        ssd_controller_avalon_slave_0.address
 		output wire        ssd_controller_avalon_slave_0_write,           //                                     .write
@@ -847,9 +848,9 @@ module embedded_system_mm_interconnect_0 (
 		.uav_lock               (response_time_meter_0_avalon_slave_0_agent_m0_lock),          //                         .lock
 		.uav_debugaccess        (response_time_meter_0_avalon_slave_0_agent_m0_debugaccess),   //                         .debugaccess
 		.av_address             (response_time_meter_0_avalon_slave_0_address),                //      avalon_anti_slave_0.address
+		.av_read                (response_time_meter_0_avalon_slave_0_read),                   //                         .read
 		.av_readdata            (response_time_meter_0_avalon_slave_0_readdata),               //                         .readdata
 		.av_write               (),                                                            //              (terminated)
-		.av_read                (),                                                            //              (terminated)
 		.av_writedata           (),                                                            //              (terminated)
 		.av_begintransfer       (),                                                            //              (terminated)
 		.av_beginbursttransfer  (),                                                            //              (terminated)

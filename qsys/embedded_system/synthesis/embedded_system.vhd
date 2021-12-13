@@ -84,6 +84,7 @@ architecture rtl of embedded_system is
 			resetn  : in  std_logic                     := 'X';             -- reset_n
 			address : in  std_logic                     := 'X';             -- address
 			data    : out std_logic_vector(15 downto 0);                    -- readdata
+			read    : in  std_logic                     := 'X';             -- read
 			clock   : in  std_logic                     := 'X';             -- clk
 			buttons : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- buttons_conduit
 			leds    : out std_logic_vector(9 downto 0);                     -- leds_conduit
@@ -166,6 +167,7 @@ architecture rtl of embedded_system is
 			nios2_jtag_debug_module_waitrequest           : in  std_logic                     := 'X';             -- waitrequest
 			nios2_jtag_debug_module_debugaccess           : out std_logic;                                        -- debugaccess
 			response_time_meter_0_avalon_slave_0_address  : out std_logic_vector(0 downto 0);                     -- address
+			response_time_meter_0_avalon_slave_0_read     : out std_logic;                                        -- read
 			response_time_meter_0_avalon_slave_0_readdata : in  std_logic_vector(15 downto 0) := (others => 'X'); -- readdata
 			ssd_controller_avalon_slave_0_address         : out std_logic_vector(0 downto 0);                     -- address
 			ssd_controller_avalon_slave_0_write           : out std_logic;                                        -- write
@@ -351,6 +353,7 @@ architecture rtl of embedded_system is
 	signal mm_interconnect_0_ssd_controller_avalon_slave_0_writedata       : std_logic_vector(31 downto 0); -- mm_interconnect_0:ssd_controller_avalon_slave_0_writedata -> ssd_controller:writedata
 	signal mm_interconnect_0_response_time_meter_0_avalon_slave_0_readdata : std_logic_vector(15 downto 0); -- response_time_meter_0:data -> mm_interconnect_0:response_time_meter_0_avalon_slave_0_readdata
 	signal mm_interconnect_0_response_time_meter_0_avalon_slave_0_address  : std_logic_vector(0 downto 0);  -- mm_interconnect_0:response_time_meter_0_avalon_slave_0_address -> response_time_meter_0:address
+	signal mm_interconnect_0_response_time_meter_0_avalon_slave_0_read     : std_logic;                     -- mm_interconnect_0:response_time_meter_0_avalon_slave_0_read -> response_time_meter_0:read
 	signal mm_interconnect_0_sysid_control_slave_readdata                  : std_logic_vector(31 downto 0); -- sysid:readdata -> mm_interconnect_0:sysid_control_slave_readdata
 	signal mm_interconnect_0_sysid_control_slave_address                   : std_logic_vector(0 downto 0);  -- mm_interconnect_0:sysid_control_slave_address -> sysid:address
 	signal mm_interconnect_0_nios2_jtag_debug_module_readdata              : std_logic_vector(31 downto 0); -- nios2:jtag_debug_module_readdata -> mm_interconnect_0:nios2_jtag_debug_module_readdata
@@ -454,6 +457,7 @@ begin
 			resetn  => rst_controller_reset_out_reset_ports_inv,                          --      clock_reset.reset_n
 			address => mm_interconnect_0_response_time_meter_0_avalon_slave_0_address(0), --   avalon_slave_0.address
 			data    => mm_interconnect_0_response_time_meter_0_avalon_slave_0_readdata,   --                 .readdata
+			read    => mm_interconnect_0_response_time_meter_0_avalon_slave_0_read,       --                 .read
 			clock   => clk_clk,                                                           --       clock_sink.clk
 			buttons => buttons_buttons_conduit,                                           --  buttons_conduit.buttons_conduit
 			leds    => leds_leds_conduit,                                                 --     leds_conduit.leds_conduit
@@ -532,6 +536,7 @@ begin
 			nios2_jtag_debug_module_waitrequest           => mm_interconnect_0_nios2_jtag_debug_module_waitrequest,           --                                     .waitrequest
 			nios2_jtag_debug_module_debugaccess           => mm_interconnect_0_nios2_jtag_debug_module_debugaccess,           --                                     .debugaccess
 			response_time_meter_0_avalon_slave_0_address  => mm_interconnect_0_response_time_meter_0_avalon_slave_0_address,  -- response_time_meter_0_avalon_slave_0.address
+			response_time_meter_0_avalon_slave_0_read     => mm_interconnect_0_response_time_meter_0_avalon_slave_0_read,     --                                     .read
 			response_time_meter_0_avalon_slave_0_readdata => mm_interconnect_0_response_time_meter_0_avalon_slave_0_readdata, --                                     .readdata
 			ssd_controller_avalon_slave_0_address         => mm_interconnect_0_ssd_controller_avalon_slave_0_address,         --        ssd_controller_avalon_slave_0.address
 			ssd_controller_avalon_slave_0_write           => mm_interconnect_0_ssd_controller_avalon_slave_0_write,           --                                     .write
