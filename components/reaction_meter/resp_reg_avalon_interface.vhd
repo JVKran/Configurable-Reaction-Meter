@@ -10,29 +10,34 @@ USE ieee.std_logic_1164.all;
 
 ENTITY resp_reg_avalon_interface IS
 	PORT ( clock, resetn 			: IN STD_LOGIC;
-		read, address, chipselect 	: IN STD_LOGIC;
+		address, chipselect 			: IN STD_LOGIC;
+		read, write						: IN STD_LOGIC;
 		irq								: OUT STD_LOGIC;
 		readdata 						: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+		writedata 						: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		leds 								: OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
 		buttons 							: IN STD_LOGIC_VECTOR(1 DOWNTO 0)
 	);
 END resp_reg_avalon_interface;
 
 ARCHITECTURE structure OF resp_reg_avalon_interface IS
-	SIGNAL from_reg 			: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL from_reg, to_reg			: STD_LOGIC_VECTOR(15 DOWNTO 0);
 	
 	COMPONENT resp_reg
-		PORT ( 	clock, resetn, address : IN STD_LOGIC;
-				data 				: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-				read				: IN STD_LOGIC;
-				irq				: OUT STD_LOGIC;
-				leds 				: OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-				buttons 			: IN STD_LOGIC_VECTOR(1 DOWNTO 0)
+		PORT (clock, resetn, address 		: IN STD_LOGIC;
+				readdata 						: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+				writedata 						: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+				read, write						: IN STD_LOGIC;
+				irq								: BUFFER STD_LOGIC;
+				buttons 							: IN STD_LOGIC_VECTOR(1 DOWNTO 0)
 		);
 	END COMPONENT;
 BEGIN
 	WITH (chipselect AND read) SELECT
 		readdata <= from_reg WHEN '1', (others => '1') WHEN OTHERS;
 		
-	reg_instance: resp_reg PORT MAP (clock, resetn, address, from_reg, read, irq, leds, buttons);
+	WITH (chipselect AND write) SELECT
+		to_reg <= writedata WHEN '1', (others => '1') WHEN OTHERS;
+		
+	reg_instance: resp_reg PORT MAP (clock, resetn, address, from_reg, to_reg, read, write, irq, buttons);
 END structure;

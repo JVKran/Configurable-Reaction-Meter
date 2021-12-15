@@ -245,7 +245,7 @@ module embedded_system_mm_interconnect_0_router
     end
 
     // ( 0x41048 .. 0x4104c )
-    if ( {address[RG:PAD7],{PAD7{1'b0}}} == 19'h41048  && read_transaction  ) begin
+    if ( {address[RG:PAD7],{PAD7{1'b0}}} == 19'h41048   ) begin
             src_channel = 8'b00000100;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
     end

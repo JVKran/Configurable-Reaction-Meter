@@ -7,63 +7,65 @@
 
 `timescale 1 ps / 1 ps
 module embedded_system_mm_interconnect_0 (
-		input  wire        clk_clk_clk,                                   //                              clk_clk.clk
-		input  wire        jtag_reset_reset_bridge_in_reset_reset,        //     jtag_reset_reset_bridge_in_reset.reset
-		input  wire        nios2_reset_n_reset_bridge_in_reset_reset,     //  nios2_reset_n_reset_bridge_in_reset.reset
-		input  wire [18:0] nios2_data_master_address,                     //                    nios2_data_master.address
-		output wire        nios2_data_master_waitrequest,                 //                                     .waitrequest
-		input  wire [3:0]  nios2_data_master_byteenable,                  //                                     .byteenable
-		input  wire        nios2_data_master_read,                        //                                     .read
-		output wire [31:0] nios2_data_master_readdata,                    //                                     .readdata
-		input  wire        nios2_data_master_write,                       //                                     .write
-		input  wire [31:0] nios2_data_master_writedata,                   //                                     .writedata
-		input  wire        nios2_data_master_debugaccess,                 //                                     .debugaccess
-		input  wire [18:0] nios2_instruction_master_address,              //             nios2_instruction_master.address
-		output wire        nios2_instruction_master_waitrequest,          //                                     .waitrequest
-		input  wire        nios2_instruction_master_read,                 //                                     .read
-		output wire [31:0] nios2_instruction_master_readdata,             //                                     .readdata
-		output wire [0:0]  jtag_avalon_jtag_slave_address,                //               jtag_avalon_jtag_slave.address
-		output wire        jtag_avalon_jtag_slave_write,                  //                                     .write
-		output wire        jtag_avalon_jtag_slave_read,                   //                                     .read
-		input  wire [31:0] jtag_avalon_jtag_slave_readdata,               //                                     .readdata
-		output wire [31:0] jtag_avalon_jtag_slave_writedata,              //                                     .writedata
-		input  wire        jtag_avalon_jtag_slave_waitrequest,            //                                     .waitrequest
-		output wire        jtag_avalon_jtag_slave_chipselect,             //                                     .chipselect
-		output wire [1:0]  leds_s1_address,                               //                              leds_s1.address
-		output wire        leds_s1_write,                                 //                                     .write
-		input  wire [31:0] leds_s1_readdata,                              //                                     .readdata
-		output wire [31:0] leds_s1_writedata,                             //                                     .writedata
-		output wire        leds_s1_chipselect,                            //                                     .chipselect
-		output wire [15:0] memory_s1_address,                             //                            memory_s1.address
-		output wire        memory_s1_write,                               //                                     .write
-		input  wire [31:0] memory_s1_readdata,                            //                                     .readdata
-		output wire [31:0] memory_s1_writedata,                           //                                     .writedata
-		output wire [3:0]  memory_s1_byteenable,                          //                                     .byteenable
-		output wire        memory_s1_chipselect,                          //                                     .chipselect
-		output wire        memory_s1_clken,                               //                                     .clken
-		output wire [8:0]  nios2_jtag_debug_module_address,               //              nios2_jtag_debug_module.address
-		output wire        nios2_jtag_debug_module_write,                 //                                     .write
-		output wire        nios2_jtag_debug_module_read,                  //                                     .read
-		input  wire [31:0] nios2_jtag_debug_module_readdata,              //                                     .readdata
-		output wire [31:0] nios2_jtag_debug_module_writedata,             //                                     .writedata
-		output wire [3:0]  nios2_jtag_debug_module_byteenable,            //                                     .byteenable
-		input  wire        nios2_jtag_debug_module_waitrequest,           //                                     .waitrequest
-		output wire        nios2_jtag_debug_module_debugaccess,           //                                     .debugaccess
-		output wire [0:0]  response_time_meter_0_avalon_slave_0_address,  // response_time_meter_0_avalon_slave_0.address
-		output wire        response_time_meter_0_avalon_slave_0_read,     //                                     .read
-		input  wire [15:0] response_time_meter_0_avalon_slave_0_readdata, //                                     .readdata
-		output wire [0:0]  ssd_controller_avalon_slave_0_address,         //        ssd_controller_avalon_slave_0.address
-		output wire        ssd_controller_avalon_slave_0_write,           //                                     .write
-		output wire [31:0] ssd_controller_avalon_slave_0_writedata,       //                                     .writedata
-		output wire [3:0]  ssd_controller_avalon_slave_0_byteenable,      //                                     .byteenable
-		output wire        ssd_controller_avalon_slave_0_chipselect,      //                                     .chipselect
-		output wire [0:0]  sysid_control_slave_address,                   //                  sysid_control_slave.address
-		input  wire [31:0] sysid_control_slave_readdata,                  //                                     .readdata
-		output wire [2:0]  timer_s1_address,                              //                             timer_s1.address
-		output wire        timer_s1_write,                                //                                     .write
-		input  wire [15:0] timer_s1_readdata,                             //                                     .readdata
-		output wire [15:0] timer_s1_writedata,                            //                                     .writedata
-		output wire        timer_s1_chipselect                            //                                     .chipselect
+		input  wire        clk_clk_clk,                                    //                              clk_clk.clk
+		input  wire        jtag_reset_reset_bridge_in_reset_reset,         //     jtag_reset_reset_bridge_in_reset.reset
+		input  wire        nios2_reset_n_reset_bridge_in_reset_reset,      //  nios2_reset_n_reset_bridge_in_reset.reset
+		input  wire [18:0] nios2_data_master_address,                      //                    nios2_data_master.address
+		output wire        nios2_data_master_waitrequest,                  //                                     .waitrequest
+		input  wire [3:0]  nios2_data_master_byteenable,                   //                                     .byteenable
+		input  wire        nios2_data_master_read,                         //                                     .read
+		output wire [31:0] nios2_data_master_readdata,                     //                                     .readdata
+		input  wire        nios2_data_master_write,                        //                                     .write
+		input  wire [31:0] nios2_data_master_writedata,                    //                                     .writedata
+		input  wire        nios2_data_master_debugaccess,                  //                                     .debugaccess
+		input  wire [18:0] nios2_instruction_master_address,               //             nios2_instruction_master.address
+		output wire        nios2_instruction_master_waitrequest,           //                                     .waitrequest
+		input  wire        nios2_instruction_master_read,                  //                                     .read
+		output wire [31:0] nios2_instruction_master_readdata,              //                                     .readdata
+		output wire [0:0]  jtag_avalon_jtag_slave_address,                 //               jtag_avalon_jtag_slave.address
+		output wire        jtag_avalon_jtag_slave_write,                   //                                     .write
+		output wire        jtag_avalon_jtag_slave_read,                    //                                     .read
+		input  wire [31:0] jtag_avalon_jtag_slave_readdata,                //                                     .readdata
+		output wire [31:0] jtag_avalon_jtag_slave_writedata,               //                                     .writedata
+		input  wire        jtag_avalon_jtag_slave_waitrequest,             //                                     .waitrequest
+		output wire        jtag_avalon_jtag_slave_chipselect,              //                                     .chipselect
+		output wire [1:0]  leds_s1_address,                                //                              leds_s1.address
+		output wire        leds_s1_write,                                  //                                     .write
+		input  wire [31:0] leds_s1_readdata,                               //                                     .readdata
+		output wire [31:0] leds_s1_writedata,                              //                                     .writedata
+		output wire        leds_s1_chipselect,                             //                                     .chipselect
+		output wire [15:0] memory_s1_address,                              //                            memory_s1.address
+		output wire        memory_s1_write,                                //                                     .write
+		input  wire [31:0] memory_s1_readdata,                             //                                     .readdata
+		output wire [31:0] memory_s1_writedata,                            //                                     .writedata
+		output wire [3:0]  memory_s1_byteenable,                           //                                     .byteenable
+		output wire        memory_s1_chipselect,                           //                                     .chipselect
+		output wire        memory_s1_clken,                                //                                     .clken
+		output wire [8:0]  nios2_jtag_debug_module_address,                //              nios2_jtag_debug_module.address
+		output wire        nios2_jtag_debug_module_write,                  //                                     .write
+		output wire        nios2_jtag_debug_module_read,                   //                                     .read
+		input  wire [31:0] nios2_jtag_debug_module_readdata,               //                                     .readdata
+		output wire [31:0] nios2_jtag_debug_module_writedata,              //                                     .writedata
+		output wire [3:0]  nios2_jtag_debug_module_byteenable,             //                                     .byteenable
+		input  wire        nios2_jtag_debug_module_waitrequest,            //                                     .waitrequest
+		output wire        nios2_jtag_debug_module_debugaccess,            //                                     .debugaccess
+		output wire [0:0]  response_time_meter_0_avalon_slave_0_address,   // response_time_meter_0_avalon_slave_0.address
+		output wire        response_time_meter_0_avalon_slave_0_write,     //                                     .write
+		output wire        response_time_meter_0_avalon_slave_0_read,      //                                     .read
+		input  wire [15:0] response_time_meter_0_avalon_slave_0_readdata,  //                                     .readdata
+		output wire [15:0] response_time_meter_0_avalon_slave_0_writedata, //                                     .writedata
+		output wire [0:0]  ssd_controller_avalon_slave_0_address,          //        ssd_controller_avalon_slave_0.address
+		output wire        ssd_controller_avalon_slave_0_write,            //                                     .write
+		output wire [31:0] ssd_controller_avalon_slave_0_writedata,        //                                     .writedata
+		output wire [3:0]  ssd_controller_avalon_slave_0_byteenable,       //                                     .byteenable
+		output wire        ssd_controller_avalon_slave_0_chipselect,       //                                     .chipselect
+		output wire [0:0]  sysid_control_slave_address,                    //                  sysid_control_slave.address
+		input  wire [31:0] sysid_control_slave_readdata,                   //                                     .readdata
+		output wire [2:0]  timer_s1_address,                               //                             timer_s1.address
+		output wire        timer_s1_write,                                 //                                     .write
+		input  wire [15:0] timer_s1_readdata,                              //                                     .readdata
+		output wire [15:0] timer_s1_writedata,                             //                                     .writedata
+		output wire        timer_s1_chipselect                             //                                     .chipselect
 	);
 
 	wire         nios2_data_master_translator_avalon_universal_master_0_waitrequest;          // nios2_data_master_agent:av_waitrequest -> nios2_data_master_translator:uav_waitrequest
@@ -910,10 +912,10 @@ module embedded_system_mm_interconnect_0 (
 		.uav_lock               (response_time_meter_0_avalon_slave_0_agent_m0_lock),          //                         .lock
 		.uav_debugaccess        (response_time_meter_0_avalon_slave_0_agent_m0_debugaccess),   //                         .debugaccess
 		.av_address             (response_time_meter_0_avalon_slave_0_address),                //      avalon_anti_slave_0.address
+		.av_write               (response_time_meter_0_avalon_slave_0_write),                  //                         .write
 		.av_read                (response_time_meter_0_avalon_slave_0_read),                   //                         .read
 		.av_readdata            (response_time_meter_0_avalon_slave_0_readdata),               //                         .readdata
-		.av_write               (),                                                            //              (terminated)
-		.av_writedata           (),                                                            //              (terminated)
+		.av_writedata           (response_time_meter_0_avalon_slave_0_writedata),              //                         .writedata
 		.av_begintransfer       (),                                                            //              (terminated)
 		.av_beginbursttransfer  (),                                                            //              (terminated)
 		.av_burstcount          (),                                                            //              (terminated)

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2' in SOPC Builder design 'embedded_system'
  * SOPC Builder design path: ../../embedded_system.sopcinfo
  *
- * Generated: Mon Dec 13 12:30:01 CET 2021
+ * Generated: Wed Dec 15 10:31:44 CET 2021
  */
 
 /*
@@ -260,8 +260,8 @@
 
 #define ALT_MODULE_CLASS_response_time_meter_0 response_time_meter
 #define RESPONSE_TIME_METER_0_BASE 0x41048
-#define RESPONSE_TIME_METER_0_IRQ 1
-#define RESPONSE_TIME_METER_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define RESPONSE_TIME_METER_0_IRQ -1
+#define RESPONSE_TIME_METER_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define RESPONSE_TIME_METER_0_NAME "/dev/response_time_meter_0"
 #define RESPONSE_TIME_METER_0_SPAN 4
 #define RESPONSE_TIME_METER_0_TYPE "response_time_meter"
@@ -293,7 +293,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1639394707
+#define SYSID_TIMESTAMP 1639560461
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 
