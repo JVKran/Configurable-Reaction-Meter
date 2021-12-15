@@ -1,0 +1,3 @@
+[submodule "hps/software"]
+	path = hps/software
+	url = https://github.com/JVKran/Linux-Kernel-Response
