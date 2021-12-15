@@ -11,6 +11,7 @@ entity embedded_system is
 		buttons_buttons_conduit : in  std_logic_vector(1 downto 0)  := (others => '0'); -- buttons.buttons_conduit
 		clk_clk                 : in  std_logic                     := '0';             --     clk.clk
 		leds_export             : out std_logic_vector(9 downto 0);                     --    leds.export
+		meas_export             : out std_logic_vector(9 downto 0);                     --    meas.export
 		reset_reset_n           : in  std_logic                     := '0';             --   reset.reset_n
 		to_hex_readdata         : out std_logic_vector(47 downto 0)                     --  to_hex.readdata
 	);
@@ -170,6 +171,11 @@ architecture rtl of embedded_system is
 			leds_s1_readdata                               : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			leds_s1_writedata                              : out std_logic_vector(31 downto 0);                    -- writedata
 			leds_s1_chipselect                             : out std_logic;                                        -- chipselect
+			measurement_s1_address                         : out std_logic_vector(1 downto 0);                     -- address
+			measurement_s1_write                           : out std_logic;                                        -- write
+			measurement_s1_readdata                        : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			measurement_s1_writedata                       : out std_logic_vector(31 downto 0);                    -- writedata
+			measurement_s1_chipselect                      : out std_logic;                                        -- chipselect
 			memory_s1_address                              : out std_logic_vector(15 downto 0);                    -- address
 			memory_s1_write                                : out std_logic;                                        -- write
 			memory_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -404,6 +410,11 @@ architecture rtl of embedded_system is
 	signal mm_interconnect_0_leds_s1_address                                : std_logic_vector(1 downto 0);  -- mm_interconnect_0:leds_s1_address -> leds:address
 	signal mm_interconnect_0_leds_s1_write                                  : std_logic;                     -- mm_interconnect_0:leds_s1_write -> mm_interconnect_0_leds_s1_write:in
 	signal mm_interconnect_0_leds_s1_writedata                              : std_logic_vector(31 downto 0); -- mm_interconnect_0:leds_s1_writedata -> leds:writedata
+	signal mm_interconnect_0_measurement_s1_chipselect                      : std_logic;                     -- mm_interconnect_0:measurement_s1_chipselect -> measurement:chipselect
+	signal mm_interconnect_0_measurement_s1_readdata                        : std_logic_vector(31 downto 0); -- measurement:readdata -> mm_interconnect_0:measurement_s1_readdata
+	signal mm_interconnect_0_measurement_s1_address                         : std_logic_vector(1 downto 0);  -- mm_interconnect_0:measurement_s1_address -> measurement:address
+	signal mm_interconnect_0_measurement_s1_write                           : std_logic;                     -- mm_interconnect_0:measurement_s1_write -> mm_interconnect_0_measurement_s1_write:in
+	signal mm_interconnect_0_measurement_s1_writedata                       : std_logic_vector(31 downto 0); -- mm_interconnect_0:measurement_s1_writedata -> measurement:writedata
 	signal irq_mapper_receiver0_irq                                         : std_logic;                     -- response_time_meter_0:irq -> irq_mapper:receiver0_irq
 	signal irq_mapper_receiver1_irq                                         : std_logic;                     -- timer:irq -> irq_mapper:receiver1_irq
 	signal irq_mapper_receiver2_irq                                         : std_logic;                     -- jtag:av_irq -> irq_mapper:receiver2_irq
@@ -417,7 +428,8 @@ architecture rtl of embedded_system is
 	signal mm_interconnect_0_jtag_avalon_jtag_slave_write_ports_inv         : std_logic;                     -- mm_interconnect_0_jtag_avalon_jtag_slave_write:inv -> jtag:av_write_n
 	signal mm_interconnect_0_timer_s1_write_ports_inv                       : std_logic;                     -- mm_interconnect_0_timer_s1_write:inv -> timer:write_n
 	signal mm_interconnect_0_leds_s1_write_ports_inv                        : std_logic;                     -- mm_interconnect_0_leds_s1_write:inv -> leds:write_n
-	signal rst_controller_reset_out_reset_ports_inv                         : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag:rst_n, leds:reset_n, response_time_meter_0:resetn, ssd_controller:resetn, sysid:reset_n, timer:reset_n]
+	signal mm_interconnect_0_measurement_s1_write_ports_inv                 : std_logic;                     -- mm_interconnect_0_measurement_s1_write:inv -> measurement:write_n
+	signal rst_controller_reset_out_reset_ports_inv                         : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag:rst_n, leds:reset_n, measurement:reset_n, response_time_meter_0:resetn, ssd_controller:resetn, sysid:reset_n, timer:reset_n]
 	signal rst_controller_001_reset_out_reset_ports_inv                     : std_logic;                     -- rst_controller_001_reset_out_reset:inv -> nios2:reset_n
 
 begin
@@ -446,6 +458,18 @@ begin
 			chipselect => mm_interconnect_0_leds_s1_chipselect,      --                    .chipselect
 			readdata   => mm_interconnect_0_leds_s1_readdata,        --                    .readdata
 			out_port   => leds_export                                -- external_connection.export
+		);
+
+	measurement : component embedded_system_leds
+		port map (
+			clk        => clk_clk,                                          --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,         --               reset.reset_n
+			address    => mm_interconnect_0_measurement_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_measurement_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_measurement_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_measurement_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_measurement_s1_readdata,        --                    .readdata
+			out_port   => meas_export                                       -- external_connection.export
 		);
 
 	memory : component embedded_system_memory
@@ -567,6 +591,11 @@ begin
 			leds_s1_readdata                               => mm_interconnect_0_leds_s1_readdata,                               --                                     .readdata
 			leds_s1_writedata                              => mm_interconnect_0_leds_s1_writedata,                              --                                     .writedata
 			leds_s1_chipselect                             => mm_interconnect_0_leds_s1_chipselect,                             --                                     .chipselect
+			measurement_s1_address                         => mm_interconnect_0_measurement_s1_address,                         --                       measurement_s1.address
+			measurement_s1_write                           => mm_interconnect_0_measurement_s1_write,                           --                                     .write
+			measurement_s1_readdata                        => mm_interconnect_0_measurement_s1_readdata,                        --                                     .readdata
+			measurement_s1_writedata                       => mm_interconnect_0_measurement_s1_writedata,                       --                                     .writedata
+			measurement_s1_chipselect                      => mm_interconnect_0_measurement_s1_chipselect,                      --                                     .chipselect
 			memory_s1_address                              => mm_interconnect_0_memory_s1_address,                              --                            memory_s1.address
 			memory_s1_write                                => mm_interconnect_0_memory_s1_write,                                --                                     .write
 			memory_s1_readdata                             => mm_interconnect_0_memory_s1_readdata,                             --                                     .readdata
@@ -750,6 +779,8 @@ begin
 	mm_interconnect_0_timer_s1_write_ports_inv <= not mm_interconnect_0_timer_s1_write;
 
 	mm_interconnect_0_leds_s1_write_ports_inv <= not mm_interconnect_0_leds_s1_write;
+
+	mm_interconnect_0_measurement_s1_write_ports_inv <= not mm_interconnect_0_measurement_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 

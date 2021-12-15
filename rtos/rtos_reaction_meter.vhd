@@ -14,7 +14,8 @@ ENTITY rtos_reaction_meter IS
 				HEX4 					: OUT STD_LOGIC_VECTOR(0 TO 6);
 				HEX5 					: OUT STD_LOGIC_VECTOR(0 TO 6);
 				LEDR       			: out std_logic_vector(9 downto 0);
-            SW 					: IN STD_LOGIC_VECTOR(0 DOWNTO 0)
+            SW 					: IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+				GPIO_1				: OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
         );
 END rtos_reaction_meter;
 
@@ -25,7 +26,8 @@ ARCHITECTURE structure OF rtos_reaction_meter IS
             clk_clk           : in  std_logic                     := 'X';             -- clk
             to_hex_readdata : out std_logic_vector(47 downto 0);                    -- readdata
             leds_export       : out std_logic_vector(9 downto 0);                     -- export
-            reset_reset_n     : in  std_logic                     := 'X'              -- reset_n
+            reset_reset_n     : in  std_logic                     := 'X';             -- reset_n
+				meas_export       : out std_logic_vector(9 downto 0)  
         );
     end component embedded_system;
 	 
@@ -42,6 +44,7 @@ BEGIN
 				to_hex_readdata(37 DOWNTO 31) 	=> HEX4,
 				to_hex_readdata(44 DOWNTO 38) 	=> HEX5,
             leds_export       					=> LEDR,
-            reset_reset_n     					=> SW(0)
+            reset_reset_n     					=> SW(0),
+				meas_export								=> GPIO_1
         );
 END structure;

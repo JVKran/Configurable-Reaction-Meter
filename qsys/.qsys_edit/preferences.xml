@@ -7,8 +7,9 @@
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
- <library expandedCategories="Project/My Own IP Cores,Library,Project" />
- <window width="1936" height="1053" x="-8" y="-8" />
+ <library
+   expandedCategories="Library/Interface Protocols/PCI Express/QSYS Example Designs,Library,Library/Interface Protocols,Library/Processors and Peripherals,Project,Library/Interface Protocols/PCI Express,Library/Processors and Peripherals/Peripherals" />
+ <window width="1920" height="1037" x="0" y="0" />
  <generation synthesis="VHDL" block_symbol_file="0" />
  <hdlexample language="VHDL" />
 </preferences>

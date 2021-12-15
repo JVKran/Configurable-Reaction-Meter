@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2' in SOPC Builder design 'embedded_system'
  * SOPC Builder design path: ../../embedded_system.sopcinfo
  *
- * Generated: Wed Dec 08 16:26:47 CET 2021
+ * Generated: Wed Dec 15 11:42:11 CET 2021
  */
 
 /*
@@ -148,19 +148,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x41050
+#define ALT_STDERR_BASE 0x41060
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x41050
+#define ALT_STDIN_BASE 0x41060
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x41050
+#define ALT_STDOUT_BASE 0x41060
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -174,7 +174,7 @@
  */
 
 #define ALT_MODULE_CLASS_buttons altera_avalon_pio
-#define BUTTONS_BASE 0x41030
+#define BUTTONS_BASE 0x41040
 #define BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
 #define BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define BUTTONS_CAPTURE 1
@@ -211,7 +211,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x41050
+#define JTAG_UART_BASE 0x41060
 #define JTAG_UART_IRQ 1
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -229,7 +229,7 @@
  */
 
 #define ALT_MODULE_CLASS_leds altera_avalon_pio
-#define LEDS_BASE 0x41020
+#define LEDS_BASE 0x41030
 #define LEDS_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDS_CAPTURE 0
@@ -248,6 +248,33 @@
 #define LEDS_RESET_VALUE 0
 #define LEDS_SPAN 16
 #define LEDS_TYPE "altera_avalon_pio"
+
+
+/*
+ * measurement configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_measurement altera_avalon_pio
+#define MEASUREMENT_BASE 0x41020
+#define MEASUREMENT_BIT_CLEARING_EDGE_REGISTER 0
+#define MEASUREMENT_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define MEASUREMENT_CAPTURE 0
+#define MEASUREMENT_DATA_WIDTH 10
+#define MEASUREMENT_DO_TEST_BENCH_WIRING 0
+#define MEASUREMENT_DRIVEN_SIM_VALUE 0
+#define MEASUREMENT_EDGE_TYPE "NONE"
+#define MEASUREMENT_FREQ 50000000
+#define MEASUREMENT_HAS_IN 0
+#define MEASUREMENT_HAS_OUT 1
+#define MEASUREMENT_HAS_TRI 0
+#define MEASUREMENT_IRQ -1
+#define MEASUREMENT_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define MEASUREMENT_IRQ_TYPE "NONE"
+#define MEASUREMENT_NAME "/dev/measurement"
+#define MEASUREMENT_RESET_VALUE 0
+#define MEASUREMENT_SPAN 16
+#define MEASUREMENT_TYPE "altera_avalon_pio"
 
 
 /*
@@ -285,7 +312,7 @@
  */
 
 #define ALT_MODULE_CLASS_seven_segment_controller_0 seven_segment_controller
-#define SEVEN_SEGMENT_CONTROLLER_0_BASE 0x41040
+#define SEVEN_SEGMENT_CONTROLLER_0_BASE 0x41058
 #define SEVEN_SEGMENT_CONTROLLER_0_IRQ -1
 #define SEVEN_SEGMENT_CONTROLLER_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SEVEN_SEGMENT_CONTROLLER_0_NAME "/dev/seven_segment_controller_0"
@@ -299,13 +326,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid_qsys
-#define SYSID_BASE 0x41048
+#define SYSID_BASE 0x41050
 #define SYSID_ID 19088743
 #define SYSID_IRQ -1
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1638976959
+#define SYSID_TIMESTAMP 1639564713
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 

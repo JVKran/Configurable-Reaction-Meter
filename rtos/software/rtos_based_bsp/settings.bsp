@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>ucosii</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 8, 2021 4:26:46 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1638977206904</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 15, 2021 11:48:46 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1639565326832</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\kraan\Desktop\HBO-ICT\Jaar-4\Minor\P2\CSC\reaction_meter\rtos\software\rtos_based_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\embedded_system.sopcinfo</SopcDesignFile>
@@ -1751,32 +1751,38 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>leds</slaveDescriptor>
+                <slaveDescriptor>measurement</slaveDescriptor>
                 <addressRange>0x00041020 - 0x0004102F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>buttons</slaveDescriptor>
+                <slaveDescriptor>leds</slaveDescriptor>
                 <addressRange>0x00041030 - 0x0004103F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>seven_segment_controller_0</slaveDescriptor>
-                <addressRange>0x00041040 - 0x00041047</addressRange>
-                <addressSpan>8</addressSpan>
+                <slaveDescriptor>buttons</slaveDescriptor>
+                <addressRange>0x00041040 - 0x0004104F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x00041048 - 0x0004104F</addressRange>
+                <addressRange>0x00041050 - 0x00041057</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>seven_segment_controller_0</slaveDescriptor>
+                <addressRange>0x00041058 - 0x0004105F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00041050 - 0x00041057</addressRange>
+                <addressRange>0x00041060 - 0x00041067</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

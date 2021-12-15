@@ -2,22 +2,24 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="OSSem" key="selection"/>
+		<item value="MEASUREMENT_BASE" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="OSSem"/>
+			<item value="MEAS_BASE"/>
+			<item value="meas"/>
 			<item value="leds"/>
-			<item value="response"/>
-			<item value="CONTROLLER_ID"/>
-			<item value="IRQ"/>
-			<item value="irq"/>
-			<item value="RESPONSE_TIME_METER_0_IRQ_INTERRUPT_CONTROLLER_ID"/>
-			<item value="pdata"/>
+			<item value="MIN_RESP_TIME"/>
+			<item value="RESP_TIMEOUT"/>
+			<item value="MIN_RAND_DELAY"/>
+			<item value="MAX_RAND_DELAY"/>
+			<item value="button_sem"/>
 		</list>
 		<list key="replacehistory">
+			<item value="MEASUREMENT_BASE"/>
+			<item value="start_counting_sem"/>
 			<item value="show_score"/>
 		</list>
 	</section>

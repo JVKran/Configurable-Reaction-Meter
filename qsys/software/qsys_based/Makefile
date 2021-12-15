@@ -142,7 +142,7 @@ ACDS_VERSION := 18.1
 ELF := qsys_based.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := hello_ucosii.c
+C_SRCS := qsys_main.c
 CXX_SRCS :=
 ASM_SRCS :=
 

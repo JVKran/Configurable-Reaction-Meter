@@ -71,6 +71,7 @@ void reaction_meter(void* pdata){
 	while (1){
 		switch(state){
 		case IDLE: {
+			IOWR_ALTERA_AVALON_PIO_DATA(MEASUREMENT_BASE, 1UL << state);
 			if(highscore != UINT16_MAX){
 				show_score(highscore);
 			} else {
@@ -84,6 +85,7 @@ void reaction_meter(void* pdata){
 			break;
 		}
 		case START: {
+			IOWR_ALTERA_AVALON_PIO_DATA(MEASUREMENT_BASE, 1UL << state);
 			show_score(0);
 			printf("Waiting for button to be released!\n");
 			while(buttons.pressed(START_KEY)){
@@ -94,6 +96,7 @@ void reaction_meter(void* pdata){
 			break;
 		}
 		case DELAY: {
+			IOWR_ALTERA_AVALON_PIO_DATA(MEASUREMENT_BASE, 1UL << state);
 			int32_t sys_time = OSTimeGet();
 			srand(sys_time);
 			int16_t delay = (rand() % MAX_RAND_DELAY) + MIN_RAND_DELAY;
@@ -108,6 +111,7 @@ void reaction_meter(void* pdata){
 			break;
 		}
 		case COUNT: {
+			IOWR_ALTERA_AVALON_PIO_DATA(MEASUREMENT_BASE, 1UL << state);
 			enum states next_state = IDLE;
 			for(uint16_t time = 0; time < RESP_TIMEOUT; time++){
 				if(time % (RESP_TIMEOUT / LED_AMT) == 0){
@@ -130,6 +134,7 @@ void reaction_meter(void* pdata){
 			break;
 		}
 		case STOP: {
+			IOWR_ALTERA_AVALON_PIO_DATA(MEASUREMENT_BASE, 1UL << state);
 			show_score(response_time);
 			bool new_highscore = false;
 			if(response_time < highscore){
@@ -158,6 +163,8 @@ int main(void){
 	stop_sem = OSSemCreate(0);
 
 	buttons.init(button_isr);
+	uint16_t state = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 0);
+	IOWR_ALTERA_AVALON_PIO_DATA(MEASUREMENT_BASE, 1UL << state);
 
 	OSTaskCreateExt(reaction_meter,
                   NULL,
