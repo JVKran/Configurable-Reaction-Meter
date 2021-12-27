@@ -15,6 +15,7 @@
 // Application logic definitions.
 #define	  FIXED_DELAY		   2000		// Must be between 0 and 5000ms.
 #define   MIN_RESP_TIME		   80
+#define   MAX_MSG_AMT		   2
 
 // Hardware definitions.
 #define   LED_AMT			   10
@@ -31,15 +32,20 @@
 #define   TASK_STACKSIZE       1024
 OS_STK    task1_stk[TASK_STACKSIZE];
 #define   TASK1_PRIORITY      1		// Period of 1ms (highest priority)
+OS_STK    task2_stk[TASK_STACKSIZE];
+#define TASK2_PRIORITY      2
 
 // IRQ-enabled custom platform designer component
 #define	  IRQ_ID			   1
 #define	  IRQ_CONTROLLER	   0
 
 // Synchronisation mechanisms.
-OS_EVENT *running_sem, *start_sem, *stop_sem, *start_counting_sem, *restart_sem;
+OS_EVENT *running_sem, *start_sem, *stop_sem, *start_counting_sem, *restart_sem, *player_queue;
+static void *player_queue_buffer[MAX_MSG_AMT];
+char player_name[50];
 
 void show_score(unsigned int score){
+	// Can be simplified. Directly write score?
 	int data = score % 10;
 	data |= (score / 10 % 10) << 4;
 	data |= (score / 100 % 10) << 8;
@@ -55,6 +61,19 @@ void show_tries(unsigned int tries){
 
 int rotate_left(int num, int shift){
     return (num << shift) | (num >> (9 - shift));
+}
+
+static void user_register(){
+	INT8U ret;
+	static uint8_t rounds = 3;
+	void* name;
+	if(rounds++ >= 3){
+		printf("Register your name with the 'name' command.\n");
+		name = OSQPend(player_queue, 0, &ret);
+		strcpy(player_name, (char*)name);
+		printf("Registered %s.\n", player_name);
+		rounds = 0;
+	}
 }
 
 void reaction_meter(void* pdata){
@@ -78,6 +97,8 @@ void reaction_meter(void* pdata){
 			show_tries(tries++);
 			leds = 0;
 			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, leds);
+			user_register();
+			printf("Press KEY_0 whenever you're ready %s.\n", player_name);
 			OSSemPend(start_sem, 0, &ret);
 			state = START;
 			break;
@@ -134,6 +155,36 @@ void reaction_meter(void* pdata){
 	}
 }
 
+char* receive(){
+	static char payload[10];
+	int i = 0;
+	char data;
+
+	do {
+		data = getchar();
+		payload[i++] = data;
+	} while(data != '\n');
+
+	return payload;
+}
+
+// Task 3
+void console(void* pdata){
+	char* command;
+	INT8U ret = OS_NO_ERR;
+
+	while(1){
+		command = receive();
+		if(strstr(command, "name") != NULL){
+			char *name = (command + 5);
+			strtok(name, "\n");
+			OSQPost(player_queue, (void*)name);
+		} else {
+			printf("Unkown command \'%s\'.", command);
+		}
+	}
+}
+
 static void isr(void * isr_context){
 	uint16_t state = IORD_16DIRECT(RESPONSE_TIME_METER_0_BASE, 0);
 	if(state == SYS_COUNTING){
@@ -165,6 +216,7 @@ int main(void){
 	running_sem = OSSemCreate(0);
 	stop_sem = OSSemCreate(0);
 	restart_sem = OSSemCreate(0);
+	player_queue = OSQCreate((void**)&player_queue_buffer, MAX_MSG_AMT);
 
 	init_response_meter();
 
@@ -177,6 +229,16 @@ int main(void){
                   TASK_STACKSIZE,
                   NULL,
                   0);
+
+	OSTaskCreateExt(console,
+		                  NULL,
+						  (OS_STK*)&task2_stk[TASK_STACKSIZE-1],
+		                  TASK2_PRIORITY,
+		                  TASK2_PRIORITY,
+		                  task2_stk,
+		                  TASK_STACKSIZE,
+		                  NULL,
+		                  0);
 
 	OSStart();
 	return 0;

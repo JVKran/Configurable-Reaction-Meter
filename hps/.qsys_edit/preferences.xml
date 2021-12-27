@@ -9,7 +9,7 @@
  </systemtable>
  <library
    expandedCategories="Project,Library/Interface Protocols/PCI Express,Library/Interface Protocols,Library/Processors and Peripherals/Peripherals,Library,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/Processors and Peripherals" />
- <window width="1936" height="1053" x="-8" y="-8" />
+ <window width="1936" height="1053" x="-1928" y="-8" />
  <generation synthesis="VHDL" block_symbol_file="0" />
  <hdlexample language="VHDL" />
 </preferences>
