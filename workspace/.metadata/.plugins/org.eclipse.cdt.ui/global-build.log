@@ -1,33 +1,59 @@
-11:45:50 **** Incremental Build of configuration Nios II for project qsys_based ****
+10:36:04 **** Build of configuration Nios II for project rtos_based ****
 make all 
-Info: Building ../qsys_based_bsp/
-C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../qsys_based_bsp/
+Info: Building ../rtos_based_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../rtos_based_bsp/
 [BSP build complete]
-Info: Compiling qsys_main.c to obj/default/qsys_main.o
-nios2-elf-gcc -xc -MP -MMD -c -I../qsys_based_bsp//UCOSII/inc -I../qsys_based_bsp//HAL/inc -I../qsys_based_bsp/ -I../qsys_based_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -D__ucosii__    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/qsys_main.o qsys_main.c
-qsys_main.c: In function 'reaction_meter':
-qsys_main.c:89:3: warning: enumeration value 'DELAY' not handled in switch [-Wswitch]
-   switch(state){
-   ^
-qsys_main.c: In function 'console':
-qsys_main.c:174:8: warning: unused variable 'ret' [-Wunused-variable]
+Info: Compiling rtos_main.cpp to obj/default/rtos_main.o
+nios2-elf-gcc -xc++ -MP -MMD -c -I../rtos_based_bsp//UCOSII/inc -I../rtos_based_bsp//HAL/inc -I../rtos_based_bsp/ -I../rtos_based_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -D__ucosii__      -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/rtos_main.o rtos_main.cpp
+rtos_main.cpp: In function 'void console(void*)':
+rtos_main.cpp:196:8: warning: unused variable 'ret' [-Wunused-variable]
   INT8U ret = OS_NO_ERR;
         ^
-Info: Linking qsys_based.elf
-nios2-elf-g++  -T'../qsys_based_bsp//linker.x' -msys-crt0='../qsys_based_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../qsys_based_bsp/   -Wl,-Map=qsys_based.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o qsys_based.elf obj/default/qsys_main.o -lm -msys-lib=m
-nios2-elf-insert qsys_based.elf --thread_model ucosii --cpu_name nios2 --qsys true --simulation_enabled false --id 19088743 --sidp 0x41040 --timestamp 1639561708 --stderr_dev jtag --stdin_dev jtag --stdout_dev jtag --sopc_system_name embedded_system --quartus_project_dir "C:/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys" --jdi ../..//output_files/qsys_reaction_meter.jdi --sopcinfo C:/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/qsys/software/qsys_based_bsp/../../embedded_system.sopcinfo
-Info: (qsys_based.elf) 129 KBytes program size (code + initialized data).
-Info:                  55 KBytes free for stack + heap.
-Info: Creating qsys_based.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source qsys_based.elf >qsys_based.objdump
-[qsys_based build complete]
-11:46:07 **** Build of configuration Nios II for project qsys_based ****
+Info: Linking rtos_based.elf
+nios2-elf-g++  -T'../rtos_based_bsp//linker.x' -msys-crt0='../rtos_based_bsp//obj/HAL/src/crt0.o' -msys-lib=ucosii_bsp -L../rtos_based_bsp/   -Wl,-Map=rtos_based.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o rtos_based.elf obj/default/rtos_main.o obj/default/src/button.o -lm -msys-lib=m
+nios2-elf-insert rtos_based.elf --thread_model ucosii --cpu_name nios2 --qsys true --simulation_enabled false --id 19088743 --sidp 0x41050 --timestamp 1639564713 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name embedded_system --quartus_project_dir "C:/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/rtos" --jdi ../..//output_files/rtos_reaction_meter.jdi --sopcinfo C:/Users/kraan/Desktop/HBO-ICT/Jaar-4/Minor/P2/CSC/reaction_meter/rtos/software/rtos_based_bsp/../../embedded_system.sopcinfo
+Info: (rtos_based.elf) 130 KBytes program size (code + initialized data).
+Info:                  54 KBytes free for stack + heap.
+Info: Creating rtos_based.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source rtos_based.elf >rtos_based.objdump
+[rtos_based build complete]
+10:36:18 **** Build of configuration Nios II for project rtos_based ****
+make all 
+Info: Building ../rtos_based_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../rtos_based_bsp/
+[BSP build complete]
+[rtos_based build complete]
+10:37:35 **** Build of configuration Nios II for project rtos_based ****
+make all 
+Info: Building ../rtos_based_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../rtos_based_bsp/
+[BSP build complete]
+[rtos_based build complete]
+10:37:38 **** Incremental Build of configuration Nios II for project rtos_based ****
+make all 
+Info: Building ../rtos_based_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../rtos_based_bsp/
+[BSP build complete]
+[rtos_based build complete]
+10:41:31 **** Build of configuration Nios II for project rtos_based ****
+make all 
+Info: Building ../rtos_based_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../rtos_based_bsp/
+[BSP build complete]
+[rtos_based build complete]
+10:41:35 **** Incremental Build of configuration Nios II for project rtos_based ****
+make all 
+Info: Building ../rtos_based_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../rtos_based_bsp/
+[BSP build complete]
+[rtos_based build complete]
+10:44:27 **** Build of configuration Nios II for project qsys_based ****
 make all 
 Info: Building ../qsys_based_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../qsys_based_bsp/
 [BSP build complete]
 [qsys_based build complete]
-11:46:09 **** Incremental Build of configuration Nios II for project qsys_based ****
+10:44:30 **** Incremental Build of configuration Nios II for project qsys_based ****
 make all 
 Info: Building ../qsys_based_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../qsys_based_bsp/

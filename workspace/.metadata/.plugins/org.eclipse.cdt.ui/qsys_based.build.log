@@ -1,9 +1,9 @@
-11:46:09 **** Incremental Build of configuration Nios II for project qsys_based ****
+10:44:30 **** Incremental Build of configuration Nios II for project qsys_based ****
 make all 
 Info: Building ../qsys_based_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../qsys_based_bsp/
 [BSP build complete]
 [qsys_based build complete]
 
-11:46:10 Build Finished (took 1s.175ms)
+10:44:32 Build Finished (took 1s.829ms)
 

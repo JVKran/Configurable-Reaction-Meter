@@ -1297,10 +1297,10 @@ static void user_register(){
      418:	108000e8 	cmpgeui	r2,r2,3
      41c:	10803fcc 	andi	r2,r2,255
      420:	10001426 	beq	r2,zero,474 <_ZL13user_registerv+0x7c>
-		printf("Register your name with the 'name' command.");
+		printf("Register your name with the 'name' command.\n");
      424:	010000b4 	movhi	r4,2
      428:	21251c04 	addi	r4,r4,-27536
-     42c:	0000fa80 	call	fa8 <printf>
+     42c:	00010a40 	call	10a4 <puts>
 		name = OSQPend(player_queue, 0, &ret);
      430:	d0a71117 	ldw	r2,-25532(gp)
      434:	e0ffff04 	addi	r3,fp,-4
@@ -1314,7 +1314,7 @@ static void user_register(){
      450:	010000b4 	movhi	r4,2
      454:	213c6104 	addi	r4,r4,-3708
      458:	00011bc0 	call	11bc <strcpy>
-		printf("Registered %s.", player_name);
+		printf("Registered %s.\n", player_name);
      45c:	014000b4 	movhi	r5,2
      460:	297c6104 	addi	r5,r5,-3708
      464:	010000b4 	movhi	r4,2
@@ -1403,7 +1403,7 @@ void reaction_meter(void* pdata){
      548:	e03ff90d 	sth	zero,-28(fp)
 			user_register();
      54c:	00003f80 	call	3f8 <_ZL13user_registerv>
-			printf("Press KEY_0 whenever you're ready %s.", player_name);
+			printf("Press KEY_0 whenever you're ready %s.\n", player_name);
      550:	014000b4 	movhi	r5,2
      554:	297c6104 	addi	r5,r5,-3708
      558:	010000b4 	movhi	r4,2
@@ -35782,7 +35782,7 @@ int alt_get_fd (alt_dev* dev)
    1921c:	d9400015 	stw	r5,0(sp)
    19220:	d9800115 	stw	r6,4(sp)
    19224:	d9c00215 	stw	r7,8(sp)
-   19228:	00000000 	call	0 <__reset>
+   19228:	00000000 	call	0 <__alt_mem_memory>
    1922c:	d9400017 	ldw	r5,0(sp)
    19230:	d9800117 	ldw	r6,4(sp)
    19234:	d9c00217 	ldw	r7,8(sp)
@@ -35866,7 +35866,7 @@ int alt_get_fd (alt_dev* dev)
    19364:	10003226 	beq	r2,zero,19430 <__call_exitprocs+0x178>
    19368:	a009883a 	mov	r4,r20
    1936c:	98800015 	stw	r2,0(r19)
-   19370:	00000000 	call	0 <__reset>
+   19370:	00000000 	call	0 <__alt_mem_memory>
    19374:	9d000017 	ldw	r20,0(r19)
    19378:	a03fe41e 	bne	r20,zero,1930c <__alt_data_end+0xfffe930c>
    1937c:	dfc00a17 	ldw	ra,40(sp)
